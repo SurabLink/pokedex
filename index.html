@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <header>
+        <div class="logo"></div>
+        <h1>Pokédex</h1>
+        <input type="text" id="search-input" placeholder="Search Pokemon" minlength="3" />
+      </header>
+
+      <main>
+        <section id="pokemon-list"></section>
+        <button id="load-more">Load More Pokemon</button>
+      </main>
+
+      <div id="pokemon-overlay" class="d_none">
+        <div class="overlay-content">
+          <button id="close-overlay">&times;</button>
+          <div id="overlay-details"></div>
+          <button id="prev-pokemon" class="nav-button">&lt;</button>
+          <button id="next-pokemon" class="nav-button">&gt;</button>
+        </div>
+      </div>
+      <script src="script.js"></script>
+    
+</body>
+</html>
