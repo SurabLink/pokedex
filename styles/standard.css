@@ -4,9 +4,17 @@
     font-family: 'Public Sans';
 }
 
+header {
+    background-color: #f8f9fa;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+
 .container {
     width: 1440px;
-    padding: 0 80px;
+    /* padding: 0 80px; */
 }
 
 footer {
