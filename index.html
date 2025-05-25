@@ -12,7 +12,7 @@
 
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
-<body>
+<body onload="init()">
     <header>
       <div class="container">
         <img class="logo" src="/assets/icons/logo_pokédex.png" alt="Pokédex Logo" />
@@ -21,16 +21,18 @@
       </header>
 
       <main>
-        <section id="pokemon-list"></section>
-        <button id="load-more">Load More Pokemon</button>
+        <section id="pokemon_list">
+
+        </section>
+        <button id="load_more">Load More Pokemon</button>
       </main>
 
-      <div id="pokemon-overlay" class="d_none">
-        <div class="overlay-content">
-          <button id="close-overlay">&times;</button>
-          <div id="overlay-details"></div>
-          <button id="prev-pokemon" class="nav-button">&lt;</button>
-          <button id="next-pokemon" class="nav-button">&gt;</button>
+      <div id="pokemon_overlay" class="d_none">
+        <div class="overlay_content">
+          <button id="close_overlay">&times;</button>
+          <div id="overlay_details"></div>
+          <button id="prev_pokemon" class="nav_button">&lt;</button>
+          <button id="next_pokemon" class="nav_button">&gt;</button>
         </div>
       </div>
       <script src="script.js"></script>
