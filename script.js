@@ -1,12 +1,14 @@
 function init() {
     let pokemonListRef = document.getElementById('pokemon_list');
-    pokemonListRef.innerHTML += getHTMLCard();
+    pokemonListRef.innerHTML += getHTMLListviewItem();
 };
 
-function getHTMLCard() {
+function getHTMLListviewItem() {
     return `
-        <div class="card">
-            <h2 class="card-title">Pikachu</h2>
+        <div class="listview-item">
+            <h2 class="card_title">${pokemonName}</h2>
+            <img src="${pokemonImage}" alt="${pokemonName}" class="pokemon_img">
+            <span class="pokemon_type">${pokemonType}</span>
         </div>
     `;
-}
+};
