@@ -6,6 +6,12 @@ header div {
     justify-content: space-around;
 }
 
+main {
+    background-color: #333;
+    height: 100vh;
+
+}
+
 .listview_card {
     background-color: #f7d02c;
     padding: 16px;
