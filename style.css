@@ -5,3 +5,30 @@ header div {
     align-items: center;
     justify-content: space-around;
 }
+
+.listview_card {
+    background-color: #f7d02c;
+    padding: 16px;
+    margin: 12px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    width: 180px;
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+.listview_card:hover {
+    transform: scale(1.05);
+}
+
+.pokemon_img {
+    width: 96px;
+    height: 96px;
+    margin: 8px 0;
+}
+
+.pokemon_type {
+    font-weight: bold;
+    color: #333;
+}

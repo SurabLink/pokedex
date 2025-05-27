@@ -1,41 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokedex</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokedex</title>
 
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="/styles/standard.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="/styles/standard.css" />
+  <link rel="stylesheet" href="/styles/assets.css" />
 
-    <link rel="stylesheet" href="/styles/assets.css" />
+  <script src="./scripts/template.js"></script>
 
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
+
 <body onload="init()">
-    <header>
-      <div class="container">
-        <img class="logo" src="/assets/icons/logo_pokédex.png" alt="Pokédex Logo" />
-        <input type="text" id="search-input" placeholder="Search Pokemon" minlength="3" />
-      </div>
-      </header>
+  <header>
+    <div class="container">
+      <img class="logo" src="/assets/icons/logo_pokédex.png" alt="Pokédex Logo" />
+      <input type="text" id="search-input" placeholder="Search Pokemon" minlength="3" />
+    </div>
+  </header>
 
-      <main>
-        <section id="pokemon_list">
+  <main>
+    <section id="pokemon_list">
 
-        </section>
-        <button id="load_more">Load More Pokemon</button>
-      </main>
+    </section>
+    <button id="load_more">Load More Pokemon</button>
+  </main>
 
-      <div id="pokemon_overlay" class="d_none">
-        <div class="overlay_content">
-          <button id="close_overlay">&times;</button>
-          <div id="overlay_details"></div>
-          <button id="prev_pokemon" class="nav_button">&lt;</button>
-          <button id="next_pokemon" class="nav_button">&gt;</button>
-        </div>
-      </div>
-      <script src="script.js"></script>
-    
+  <div id="pokemon_overlay" class="d_none">
+    <div class="overlay_content">
+      <button id="close_overlay">&times;</button>
+      <div id="overlay_details"></div>
+      <button id="prev_pokemon" class="nav_button">&lt;</button>
+      <button id="next_pokemon" class="nav_button">&gt;</button>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+
 </body>
+
 </html>
