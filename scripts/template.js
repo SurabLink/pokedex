@@ -1,5 +1,5 @@
 
-function getHTMLListviewCard() {
+function getHTMLListviewCard(pokemonName, pokemonImage, pokemonType) {
     return `
         <div class="listview_card">
             <h2 class="card_title">${pokemonName}</h2>

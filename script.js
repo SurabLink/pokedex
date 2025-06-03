@@ -1,7 +1,3 @@
-let pokemonName = null;
-let pokemonImage = null;
-let pokemonType = null;
-
 let offset = 0;
 const limit = 20;
 
@@ -14,18 +10,27 @@ function init() {
 async function renderListviewCard() {
     let pokemonListRef = document.getElementById('pokemon_list');
 
-    showLoading();
+    // showLoading();
     pokemonListRef.innerHTML = '';
-    let listNameAndUrl = await fetchPokemonNameandDetailUrl();
+    let dataNameAndDetailUrl = await fetchPokemonNameandDetailUrl();
+    let pokemonName = null;
+    let pokemonImage = null;
+    let pokemonType = null;
 
-    for (let index = 0; index < array.length; index++) {
-        const element = array[index];
 
-        pokemonListRef.innerHTML += getHTMLListviewCard();
+    for (let resultsIndex = 0; resultsIndex < dataNameAndDetailUrl.results.length; resultsIndex++) {
+        let detailUrl = dataNameAndDetailUrl.results[resultsIndex].url;
+        let dataDetails = await fetchPokemonDetails(detailUrl);
+        pokemonName = dataNameAndDetailUrl.results[resultsIndex].name;
+        pokemonImage = dataDetails.sprites.front_default;
+        pokemonType = dataDetails.types[0].type.name;
+
+
+        pokemonListRef.innerHTML += getHTMLListviewCard(pokemonName, pokemonImage, pokemonType);
 
     }
 
-    hideLoading();
+    // hideLoading();
 }
 
 async function fetchPokemonNameandDetailUrl() {
@@ -36,15 +41,25 @@ async function fetchPokemonNameandDetailUrl() {
     try {
         response = await fetch(url);
         dataNameAndDetailUrl = await response.json();
-        dataNameAndDetailUrl = dataNameAndDetailUrl.results; // enthält name + detail-url pro Pokémon results ist ein feldname im JSON-Objekt
     } catch (error) {
         console.error('Fehler beim Laden der Pokémon-Liste:', error);
     }
 
-    await fetchPokemonDetails();
-
-
     return dataNameAndDetailUrl;
 }
 
-async function fetchPokemonDetails() {
+async function fetchPokemonDetails(detailUrl) {
+    let response = null;
+    let dataDetails = null;
+
+    try {
+        response = await fetch(detailUrl);
+        dataDetails = await response.json();
+    } catch (error) {
+        console.error('Fehler beim Laden der Pokémon-Details:', error);
+    }
+
+    return dataDetails;
+
+
+}
