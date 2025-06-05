@@ -19,7 +19,7 @@ main {
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    width: 180px;
+    width: 300px;
     display: inline-block;
     transition: transform 0.2s;
 }
@@ -28,9 +28,9 @@ main {
     transform: scale(1.05);
 }
 
-.pokemon_img {
-    width: 96px;
-    height: 96px;
+.listview_img {
+    width: auto;
+    height: 200px;
     margin: 8px 0;
 }
 

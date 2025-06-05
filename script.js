@@ -22,7 +22,7 @@ async function renderListviewCard() {
         let detailUrl = dataNameAndDetailUrl.results[resultsIndex].url;
         let dataDetails = await fetchPokemonDetails(detailUrl);
         pokemonName = dataNameAndDetailUrl.results[resultsIndex].name;
-        pokemonImage = dataDetails.sprites.front_default;
+        pokemonImage = dataDetails.sprites.other['official-artwork'].front_default;
         pokemonType = dataDetails.types[0].type.name;
 
 
