@@ -8,8 +8,16 @@ header div {
 
 main {
     background-color: #333;
-    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
+.pokemon_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 100px 0;
 }
 
 .listview_card {

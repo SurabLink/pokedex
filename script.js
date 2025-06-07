@@ -11,7 +11,7 @@ async function renderListviewCard() {
     let pokemonListRef = document.getElementById('pokemon_list');
 
     // showLoading();
-    pokemonListRef.innerHTML = '';
+    // pokemonListRef.innerHTML = '';
     let dataNameAndDetailUrl = await fetchPokemonNameandDetailUrl();
     let pokemonName = null;
     let pokemonImage = null;
@@ -29,6 +29,8 @@ async function renderListviewCard() {
         pokemonListRef.innerHTML += getHTMLListviewCard(pokemonName, pokemonImage, pokemonType);
 
     }
+    
+    offset += limit;
 
     // hideLoading();
 }
