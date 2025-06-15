@@ -1,5 +1,6 @@
 let offset = 0;
 const limit = 20;
+let allLoadedPokemons = {};
 
 
 
@@ -17,6 +18,15 @@ async function renderListviewCard() {
     let pokemonImage = null;
     let pokemonType = null;
 
+    await forLoopRenderListviewCard(pokemonListRef, dataNameAndDetailUrl);
+
+
+    offset += limit;
+
+    // hideLoading();
+}
+
+async function forLoopRenderListviewCard(pokemonListRef, dataNameAndDetailUrl) {
 
     for (let resultsIndex = 0; resultsIndex < dataNameAndDetailUrl.results.length; resultsIndex++) {
         let detailUrl = dataNameAndDetailUrl.results[resultsIndex].url;
@@ -25,15 +35,22 @@ async function renderListviewCard() {
         pokemonImage = dataDetails.sprites.other['official-artwork'].front_default;
         pokemonType = dataDetails.types[0].type.name;
 
-
         pokemonListRef.innerHTML += getHTMLListviewCard(pokemonName, pokemonImage, pokemonType);
-
+        storeDataInObj(pokemonName, pokemonImage, pokemonType)
     }
-    
-    offset += limit;
-
-    // hideLoading();
 }
+
+
+function storeDataInObj(pokemonName, pokemonImage, pokemonType) {
+
+    allLoadedPokemons[pokemonName] = {
+        type: pokemonType,
+        img: pokemonImage
+    };
+
+}
+
+
 
 async function fetchPokemonNameandDetailUrl() {
     let url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
