@@ -14,9 +14,6 @@ async function renderListviewCard() {
     // showLoading();
     // pokemonListRef.innerHTML = '';
     let dataNameAndDetailUrl = await fetchPokemonNameandDetailUrl();
-    let pokemonName = null;
-    let pokemonImage = null;
-    let pokemonType = null;
 
     await forLoopRenderListviewCard(pokemonListRef, dataNameAndDetailUrl);
 
@@ -31,9 +28,9 @@ async function forLoopRenderListviewCard(pokemonListRef, dataNameAndDetailUrl) {
     for (let resultsIndex = 0; resultsIndex < dataNameAndDetailUrl.results.length; resultsIndex++) {
         let detailUrl = dataNameAndDetailUrl.results[resultsIndex].url;
         let dataDetails = await fetchPokemonDetails(detailUrl);
-        pokemonName = dataNameAndDetailUrl.results[resultsIndex].name;
-        pokemonImage = dataDetails.sprites.other['official-artwork'].front_default;
-        pokemonType = dataDetails.types[0].type.name;
+        let pokemonName = dataNameAndDetailUrl.results[resultsIndex].name;
+        let pokemonImage = dataDetails.sprites.other['official-artwork'].front_default;
+        let pokemonType = dataDetails.types[0].type.name;
 
         pokemonListRef.innerHTML += getHTMLListviewCard(pokemonName, pokemonImage, pokemonType);
         storeDataInObj(pokemonName, pokemonImage, pokemonType)
