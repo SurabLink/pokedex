@@ -13,6 +13,20 @@ main {
     flex-direction: column;
 }
 
+.load_more {
+    background-color: #f7d02c;
+    color: #333;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px auto;
+    display: block;
+    margin-bottom: 100px;
+}
+
+
 .pokemon_list {
     display: flex;
     flex-wrap: wrap;
