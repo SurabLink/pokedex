@@ -84,8 +84,22 @@ function renderPokemonListviewCard(pokemonName, pokemonImage, pokemonType) {
     pokemonListRef.innerHTML += getHTMLListviewCard(pokemonName, pokemonImage, pokemonType);
 }
 
+function searchPokemon() {
+    let searchInput = document.getElementById('search_input').value.toLowerCase();
+    let pokemonListRef = document.getElementById('pokemon_list');
+    pokemonListRef.innerHTML = '';
 
+    for (let pokemonName in allLoadedPokemons) {
+        if (pokemonName.toLowerCase().includes(searchInput)) {
+            let pokemonImage = allLoadedPokemons[pokemonName].img;
+            let pokemonType = allLoadedPokemons[pokemonName].type;
 
+            renderPokemonListviewCard(pokemonName, pokemonImage, pokemonType);
+        }
+    }
+}
+
+ 
 
 
 
