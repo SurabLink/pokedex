@@ -84,8 +84,8 @@ function renderPokemonListviewCard(pokemonName, pokemonImage, pokemonType) {
     pokemonListRef.innerHTML += getHTMLListviewCard(pokemonName, pokemonImage, pokemonType);
 }
 
-function searchPokemon() {
-    let searchInput = document.getElementById('search_input').value.toLowerCase();
+function renderFilteredPokemonList() {
+    let searchInput = document.getElementById('search_input').value.toLowerCase().trim();
     let pokemonListRef = document.getElementById('pokemon_list');
     pokemonListRef.innerHTML = '';
 
@@ -102,7 +102,7 @@ function searchPokemon() {
 function resetSearchIfEmpty(searchInput) {
 
     if (searchInput.trim().length === 0) {
-        searchPokemon();
+        renderFilteredPokemonList();
     }
 
 }
