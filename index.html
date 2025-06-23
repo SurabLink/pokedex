@@ -23,7 +23,7 @@
     <div class="container">
       <img class="logo" src="/assets/icons/logo_pokédex.png" alt="Pokédex Logo" />
       <div>
-        <input type="text" id="search_input" placeholder="Search Pokemon" minlength="3" />
+        <input oninput="resetSearchIfEmpty(this.value)" type="text" id="search_input" placeholder="Search Pokemon" minlength="3" />
         <button onclick="searchPokemon()" id="search_btn" class="search_btn"><img src="./assets/icons/search.svg" alt="search magnifying glass"></button>
       </div>
     </div>

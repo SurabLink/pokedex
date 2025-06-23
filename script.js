@@ -99,6 +99,14 @@ function searchPokemon() {
     }
 }
 
+function resetSearchIfEmpty(searchInput) {
+
+    if (searchInput.trim().length === 0) {
+        searchPokemon();
+    }
+
+}
+
  
 
 
