@@ -25,7 +25,7 @@
       <div>
         <input oninput="resetSearchIfEmpty(this.value)" type="search" id="search_input" placeholder="Search Pokemon"
           minlength="3" />
-        <button onclick="renderFilteredPokemonList()" id="search_btn" class="search_btn"><img
+        <button onclick="processSearchPokemon()" id="search_btn" class="search_btn"><img
             src="./assets/icons/search.svg" alt="search magnifying glass"></button>
       </div>
     </div>
@@ -43,7 +43,6 @@
     </div>
 
     <section class="pokemon_list" id="pokemon_list">
-
     </section>
     <button onclick="loadNextPokemonBatch()" class="load_more" id="load_more">Load More Pokemon</button>
   </main>

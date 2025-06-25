@@ -84,36 +84,49 @@ function renderPokemonListviewCard(pokemonName, pokemonImage, pokemonType) {
     pokemonListRef.innerHTML += getHTMLListviewCard(pokemonName, pokemonImage, pokemonType);
 }
 
-function renderFilteredPokemonList() {
+function processSearchPokemon() {
     let searchInput = document.getElementById('search_input').value.toLowerCase().trim();
     let pokemonListRef = document.getElementById('pokemon_list');
-    let searchResultsCount = 0;
-    pokemonListRef.innerHTML = '';
 
-    for (let pokemonName in allLoadedPokemons) {
-        if (pokemonName.toLowerCase().includes(searchInput)) {
-            let pokemonImage = allLoadedPokemons[pokemonName].img;
-            let pokemonType = allLoadedPokemons[pokemonName].type;
+    if (searchInput.length > 2) {
+        pokemonListRef.innerHTML = '';
+        renderFilteredPokemonList(searchInput);
+    }
+}
 
-            renderPokemonListviewCard(pokemonName, pokemonImage, pokemonType);
-            searchResultsCount++;
+
+    function renderFilteredPokemonList(searchInput) {
+        let searchResultsCount = 0;
+
+        for (let pokemonName in allLoadedPokemons) {
+
+            if (pokemonName.toLowerCase().includes(searchInput)) {
+                let pokemonImage = allLoadedPokemons[pokemonName].img;
+                let pokemonType = allLoadedPokemons[pokemonName].type;
+
+                renderPokemonListviewCard(pokemonName, pokemonImage, pokemonType);
+                searchResultsCount++;
+            }
+        }
+
+        if (searchResultsCount == 0) {
+            document.getElementById('not_found_container').classList.remove('d_none');
         }
     }
 
-    if (searchResultsCount == 0) {
-        document.getElementById('not_found_container').classList.remove('d_none');
-    }
-}
+
+
 
 function resetSearchIfEmpty(searchInput) {
-    document.getElementById('not_found_container').classList.add('d_none');
+    let notFoundContainerRef = document.getElementById('not_found_container');
     if (searchInput.trim().length === 0) {
-        renderFilteredPokemonList();
+        notFoundContainerRef.classList.add('d_none');
+        renderFilteredPokemonList(searchInput);
     }
 
 }
 
- 
+
 
 
 
