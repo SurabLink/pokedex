@@ -23,13 +23,25 @@
     <div class="container">
       <img class="logo" src="/assets/icons/logo_pokédex.png" alt="Pokédex Logo" />
       <div>
-        <input oninput="resetSearchIfEmpty(this.value)" type="search" id="search_input" placeholder="Search Pokemon" minlength="3" />
-        <button onclick="renderFilteredPokemonList()" id="search_btn" class="search_btn"><img src="./assets/icons/search.svg" alt="search magnifying glass"></button>
+        <input oninput="resetSearchIfEmpty(this.value)" type="search" id="search_input" placeholder="Search Pokemon"
+          minlength="3" />
+        <button onclick="renderFilteredPokemonList()" id="search_btn" class="search_btn"><img
+            src="./assets/icons/search.svg" alt="search magnifying glass"></button>
       </div>
     </div>
   </header>
 
   <main>
+
+    <div class="d_none not_found_container" id="not_found_container">
+      <h3 class="not_found_text">Oops..</h3>
+      <p class="not_found_subtext">
+        Psyduck is confused. It couldn't find any matching Pokémon.<br>
+        Try loading more or searching for a different one.
+      </p>
+      <img src="./assets/img/psyduck-shake.gif" alt="psyduck" />
+    </div>
+
     <section class="pokemon_list" id="pokemon_list">
 
     </section>
@@ -51,4 +63,3 @@
 </body>
 
 </html>
-

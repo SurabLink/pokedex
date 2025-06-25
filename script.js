@@ -87,6 +87,7 @@ function renderPokemonListviewCard(pokemonName, pokemonImage, pokemonType) {
 function renderFilteredPokemonList() {
     let searchInput = document.getElementById('search_input').value.toLowerCase().trim();
     let pokemonListRef = document.getElementById('pokemon_list');
+    let searchResultsCount = 0;
     pokemonListRef.innerHTML = '';
 
     for (let pokemonName in allLoadedPokemons) {
@@ -95,12 +96,17 @@ function renderFilteredPokemonList() {
             let pokemonType = allLoadedPokemons[pokemonName].type;
 
             renderPokemonListviewCard(pokemonName, pokemonImage, pokemonType);
+            searchResultsCount++;
         }
+    }
+
+    if (searchResultsCount == 0) {
+        document.getElementById('not_found_container').classList.remove('d_none');
     }
 }
 
 function resetSearchIfEmpty(searchInput) {
-
+    document.getElementById('not_found_container').classList.add('d_none');
     if (searchInput.trim().length === 0) {
         renderFilteredPokemonList();
     }

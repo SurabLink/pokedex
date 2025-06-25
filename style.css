@@ -61,3 +61,33 @@ main {
     color: #333;
 }
 
+/*  */
+.not_found_container {
+  margin: 60px auto;
+  text-align: center;
+  background-color: #f7d02c;
+  color: #333;
+  padding: 32px 24px;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.3s ease-in;
+}
+
+.not_found_text {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.not_found_subtext {
+  font-size: 20px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.not_found_container img {
+  width: 100px;
+  height: auto;
+}
