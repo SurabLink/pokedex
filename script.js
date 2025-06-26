@@ -65,7 +65,6 @@ function collectPokemonAttributes(dataNameAndDetailUrl, dataDetails, resultsInde
     storePokemonAttributesInObj(pokemonName, pokemonImage, pokemonType);
 }
 
-
 function storePokemonAttributesInObj(pokemonName, pokemonImage, pokemonType) {
 
     allLoadedPokemons[pokemonName] = {
@@ -79,8 +78,6 @@ function storePokemonAttributesInObj(pokemonName, pokemonImage, pokemonType) {
 
 function renderPokemonListviewCard(pokemonName, pokemonImage, pokemonType) {
     let pokemonListRef = document.getElementById('pokemon_list');
-    // pokemonListRef.innerHTML = '';
-
     pokemonListRef.innerHTML += getHTMLListviewCard(pokemonName, pokemonImage, pokemonType);
 }
 
@@ -95,27 +92,25 @@ function processSearchPokemon() {
 }
 
 
-    function renderFilteredPokemonList(searchInput) {
-        let searchResultsCount = 0;
 
-        for (let pokemonName in allLoadedPokemons) {
+function renderFilteredPokemonList(searchInput) {
+    let searchResultsCount = 0;
 
-            if (pokemonName.toLowerCase().includes(searchInput)) {
-                let pokemonImage = allLoadedPokemons[pokemonName].img;
-                let pokemonType = allLoadedPokemons[pokemonName].type;
+    for (let pokemonName in allLoadedPokemons) {
 
-                renderPokemonListviewCard(pokemonName, pokemonImage, pokemonType);
-                searchResultsCount++;
-            }
-        }
+        if (pokemonName.toLowerCase().includes(searchInput)) {
+            let pokemonImage = allLoadedPokemons[pokemonName].img;
+            let pokemonType = allLoadedPokemons[pokemonName].type;
 
-        if (searchResultsCount == 0) {
-            document.getElementById('not_found_container').classList.remove('d_none');
+            renderPokemonListviewCard(pokemonName, pokemonImage, pokemonType);
+            searchResultsCount++;
         }
     }
 
-
-
+    if (searchResultsCount == 0) {
+        document.getElementById('not_found_container').classList.remove('d_none');
+    }
+}
 
 function resetSearchIfEmpty(searchInput) {
     let notFoundContainerRef = document.getElementById('not_found_container');
@@ -123,7 +118,6 @@ function resetSearchIfEmpty(searchInput) {
         notFoundContainerRef.classList.add('d_none');
         renderFilteredPokemonList(searchInput);
     }
-
 }
 
 
