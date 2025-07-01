@@ -1,10 +1,10 @@
 
-function getHTMLListviewCard(pokemonName, pokemonImage, pokemonType) {
+function getHTMLListviewCard(pokémonName, pokémonImage, pokémonType) {
     return `
-        <div class="listview_card ${pokemonType}">
-            <h2 class="card_title">${pokemonName}</h2>
-            <img src="${pokemonImage}" alt="${pokemonName}" class="listview_img">
-            <span class="pokemon_type">${pokemonType}</span>
+        <div class="listview_card ${pokémonType}">
+            <h2 class="card_title">${pokémonName}</h2>
+            <img src="${pokémonImage}" alt="${pokémonName}" class="listview_img">
+            <span class="pokémon_type">${pokémonType}</span>
         </div>
     `;
 };

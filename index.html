@@ -23,9 +23,9 @@
     <div class="container">
       <img class="logo" src="/assets/icons/logo_pokédex.png" alt="Pokédex Logo" />
       <div>
-        <input oninput="resetSearchIfEmpty(this.value)" type="search" id="search_input" placeholder="Search Pokemon"
+        <input oninput="resetSearchIfEmpty(this.value)" type="search" id="search_input" placeholder="Search Pokémon"
           minlength="3" />
-        <button onclick="processSearchPokemon()" id="search_btn" class="search_btn"><img
+        <button onclick="processSearchPokémon()" id="search_btn" class="search_btn"><img
             src="./assets/icons/search.svg" alt="search magnifying glass"></button>
       </div>
     </div>
@@ -42,22 +42,27 @@
       <img src="./assets/img/psyduck-shake.gif" alt="psyduck" />
     </div>
 
-    <section class="pokemon_list" id="pokemon_list">
+    <section class="pokémon_list" id="pokémon_list">
     </section>
-    <button onclick="loadNextPokemonBatch()" class="load_more" id="load_more">Load More Pokemon</button>
-    <div class="loading shake">
-        <div class="button-blink"></div>
+    <button onclick="loadNextPokémonBatch()" class="load_more" id="load_more">Load More Pokémon</button>
+
+    <div class="load_container">
+
+      <div class="pokéball shake">
+          <div class="button-blink"></div>
+      </div>
+      <p class="load_feedback"><span id="current_loaded_count">0</span> out of <span id="total_loading_count">20</span> Pokémons loaded...</p>
     </div>
 
 
   </main>
 
-  <div id="pokemon_overlay" class="d_none">
+  <div id="pokémon_overlay" class="d_none">
     <div class="overlay_content">
       <button id="close_overlay">&times;</button>
       <div id="overlay_details"></div>
-      <button id="prev_pokemon" class="nav_button">&lt;</button>
-      <button id="next_pokemon" class="nav_button">&gt;</button>
+      <button id="prev_pokémon" class="nav_button">&lt;</button>
+      <button id="next_pokémon" class="nav_button">&gt;</button>
     </div>
   </div>
 

@@ -26,7 +26,7 @@ main {
 }
 
 
-.pokemon_list {
+.pokémon_list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -55,7 +55,7 @@ main {
   margin: 8px 0;
 }
 
-.pokemon_type {
+.pokémon_type {
   font-weight: bold;
   color: #333;
 }
@@ -91,7 +91,16 @@ main {
   height: auto;
 }
 
-.loading {
+
+.load_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  flex-direction: column;
+}
+
+.pokéball {
   height: 15vmin;
   width: 15vmin;
   border-radius: 50%;
@@ -117,15 +126,29 @@ main {
 }
 
 @keyframes pokeball-shake {
-  0%   { transform: rotate(30deg); }
-  25%  { transform: rotate(-30deg); }
-  50%  { transform: rotate(30deg); }
-  75%  { transform: rotate(-30deg); }
-  100% { transform: rotate(30deg); }
+  0% {
+    transform: rotate(30deg);
+  }
+
+  25% {
+    transform: rotate(-30deg);
+  }
+
+  50% {
+    transform: rotate(30deg);
+  }
+
+  75% {
+    transform: rotate(-30deg);
+  }
+
+  100% {
+    transform: rotate(30deg);
+  }
 }
 
 
-.loading.shake {
+.pokéball.shake {
   animation: pokeball-shake 2s ease-in-out infinite;
 }
 
@@ -141,4 +164,12 @@ main {
     background-color: rgba(255, 0, 0, 0.85);
     /* box-shadow: 0 0 20px rgba(255, 0, 0, 0.8); */
   }
+}
+
+.load_feedback {
+  text-align: center;
+  font-size: 18px;
+  color: white;
+  margin: 20px 0;
+  font-weight: bold;
 }

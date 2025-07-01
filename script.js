@@ -1,24 +1,24 @@
 let offset = 0;
 const limit = 20;
-let allLoadedPokemons = {};
+let allLoadedPokémons = {};
 
 function init() {
-    loadNextPokemonBatch();
+    loadNextPokémonBatch();
 };
 
-async function loadNextPokemonBatch() {
+async function loadNextPokémonBatch() {
 
     // showLoading();
-    let dataNameAndDetailUrl = await fetchPokemonNameandDetailUrl();
+    let dataNameAndDetailUrl = await fetchPokémonNameandDetailUrl();
 
-    await processPokemonBatch(dataNameAndDetailUrl);
+    await processPokémonBatch(dataNameAndDetailUrl);
 
     offset += limit;
 
     // hideLoading();
 }
 
-async function fetchPokemonNameandDetailUrl() {
+async function fetchPokémonNameandDetailUrl() {
     let url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
     let response = null;
     let dataNameAndDetailUrl = null;
@@ -33,17 +33,24 @@ async function fetchPokemonNameandDetailUrl() {
     return dataNameAndDetailUrl;
 }
 
-async function processPokemonBatch(dataNameAndDetailUrl) {
+async function processPokémonBatch(dataNameAndDetailUrl) {
+    let currentLoadedCountSpanRef = document.getElementById('current_loaded_count')
+    let totalLoadingCountSpanRef = document.getElementById('total_loading_count');
+    let currentLoadedCount = 0;
+    currentLoadedCountSpanRef.innerHTML = "";
+    totalLoadingCountSpanRef.innerHTML = "";
+    totalLoadingCountSpanRef.innerHTML = limit;
 
     for (let resultsIndex = 0; resultsIndex < dataNameAndDetailUrl.results.length; resultsIndex++) {
         let detailUrl = dataNameAndDetailUrl.results[resultsIndex].url;
-        let dataDetails = await fetchPokemonDetails(detailUrl);
-
-        collectPokemonAttributes(dataNameAndDetailUrl, dataDetails, resultsIndex);
+        let dataDetails = await fetchPokémonDetails(detailUrl);
+        collectPokémonAttributes(dataNameAndDetailUrl, dataDetails, resultsIndex);
+        currentLoadedCount++;
+        currentLoadedCountSpanRef.innerHTML = currentLoadedCount;
     }
 }
 
-async function fetchPokemonDetails(detailUrl) {
+async function fetchPokémonDetails(detailUrl) {
     let response = null;
     let dataDetails = null;
 
@@ -57,52 +64,52 @@ async function fetchPokemonDetails(detailUrl) {
     return dataDetails;
 }
 
-function collectPokemonAttributes(dataNameAndDetailUrl, dataDetails, resultsIndex) {
-    let pokemonName = dataNameAndDetailUrl.results[resultsIndex].name;
-    let pokemonImage = dataDetails.sprites.other['official-artwork'].front_default;
-    let pokemonType = dataDetails.types[0].type.name;
+function collectPokémonAttributes(dataNameAndDetailUrl, dataDetails, resultsIndex) {
+    let pokémonName = dataNameAndDetailUrl.results[resultsIndex].name;
+    let pokémonImage = dataDetails.sprites.other['official-artwork'].front_default;
+    let pokémonType = dataDetails.types[0].type.name;
 
-    storePokemonAttributesInObj(pokemonName, pokemonImage, pokemonType);
+    storePokémonAttributesInObj(pokémonName, pokémonImage, pokémonType);
 }
 
-function storePokemonAttributesInObj(pokemonName, pokemonImage, pokemonType) {
+function storePokémonAttributesInObj(pokémonName, pokémonImage, pokémonType) {
 
-    allLoadedPokemons[pokemonName] = {
-        type: pokemonType,
-        img: pokemonImage
+    allLoadedPokémons[pokémonName] = {
+        type: pokémonType,
+        img: pokémonImage
     };
 
-    renderPokemonListviewCard(pokemonName, pokemonImage, pokemonType);
+    renderPokémonListviewCard(pokémonName, pokémonImage, pokémonType);
 
 }
 
-function renderPokemonListviewCard(pokemonName, pokemonImage, pokemonType) {
-    let pokemonListRef = document.getElementById('pokemon_list');
-    pokemonListRef.innerHTML += getHTMLListviewCard(pokemonName, pokemonImage, pokemonType);
+function renderPokémonListviewCard(pokémonName, pokémonImage, pokémonType) {
+    let pokémonListRef = document.getElementById('pokémon_list');
+    pokémonListRef.innerHTML += getHTMLListviewCard(pokémonName, pokémonImage, pokémonType);
 }
 
-function processSearchPokemon() {
+function processSearchPokémon() {
     let searchInput = document.getElementById('search_input').value.toLowerCase().trim();
-    let pokemonListRef = document.getElementById('pokemon_list');
+    let pokémonListRef = document.getElementById('pokémon_list');
 
     if (searchInput.length > 2) {
-        pokemonListRef.innerHTML = '';
-        renderFilteredPokemonList(searchInput);
+        pokémonListRef.innerHTML = '';
+        renderFilteredPokémonList(searchInput);
     }
 }
 
 
 
-function renderFilteredPokemonList(searchInput) {
+function renderFilteredPokémonList(searchInput) {
     let searchResultsCount = 0;
 
-    for (let pokemonName in allLoadedPokemons) {
+    for (let pokémonName in allLoadedPokémons) {
 
-        if (pokemonName.toLowerCase().includes(searchInput)) {
-            let pokemonImage = allLoadedPokemons[pokemonName].img;
-            let pokemonType = allLoadedPokemons[pokemonName].type;
+        if (pokémonName.toLowerCase().includes(searchInput)) {
+            let pokémonImage = allLoadedPokémons[pokémonName].img;
+            let pokémonType = allLoadedPokémons[pokémonName].type;
 
-            renderPokemonListviewCard(pokemonName, pokemonImage, pokemonType);
+            renderPokémonListviewCard(pokémonName, pokémonImage, pokémonType);
             searchResultsCount++;
         }
     }
@@ -116,7 +123,7 @@ function resetSearchIfEmpty(searchInput) {
     let notFoundContainerRef = document.getElementById('not_found_container');
     if (searchInput.trim().length === 0) {
         notFoundContainerRef.classList.add('d_none');
-        renderFilteredPokemonList(searchInput);
+        renderFilteredPokémonList(searchInput);
     }
 }
 
