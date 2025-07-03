@@ -1,6 +1,7 @@
 let offset = 0;
 const limit = 20;
-let allLoadedPokémons = {};
+let allLoadedPokémonsObj = {};
+let allCurrentlyRenderedPokémonCards = '';
 
 function init() {
     loadNextPokémonBatch();
@@ -8,14 +9,33 @@ function init() {
 
 async function loadNextPokémonBatch() {
 
-    // showLoading();
+    showLoading();
     let dataNameAndDetailUrl = await fetchPokémonNameandDetailUrl();
-
     await processPokémonBatch(dataNameAndDetailUrl);
-
     offset += limit;
+    hideLoading();
+}
 
-    // hideLoading();
+function showLoading() {
+    let currentLoadedCountSpanRef = document.getElementById('current_loaded_count');
+    let totalLoadingCountSpanRef = document.getElementById('total_loading_count');
+    let loadMoreRef = document.getElementById('load_more');
+    let loadContainerRef = document.getElementById('load_container');
+
+    currentLoadedCountSpanRef.innerHTML = 0;
+    totalLoadingCountSpanRef.innerHTML = limit;
+    loadMoreRef.disabled = true;
+    loadMoreRef.classList.add('d_none');
+    loadContainerRef.classList.remove('d_none');
+}
+
+function hideLoading() {
+    let loadMoreRef = document.getElementById('load_more');
+    let loadContainerRef = document.getElementById('load_container');
+
+    loadMoreRef.disabled = false;
+    loadMoreRef.classList.remove('d_none');
+    loadContainerRef.classList.add('d_none');
 }
 
 async function fetchPokémonNameandDetailUrl() {
@@ -34,12 +54,16 @@ async function fetchPokémonNameandDetailUrl() {
 }
 
 async function processPokémonBatch(dataNameAndDetailUrl) {
-    let currentLoadedCountSpanRef = document.getElementById('current_loaded_count')
-    let totalLoadingCountSpanRef = document.getElementById('total_loading_count');
+    let pokémonListRef = document.getElementById('pokémon_list');
+
+    allCurrentlyRenderedPokémonCards = '';
+    await processPokémonEach(dataNameAndDetailUrl)
+    pokémonListRef.innerHTML += allCurrentlyRenderedPokémonCards;
+}
+
+async function processPokémonEach(dataNameAndDetailUrl) {
+    let currentLoadedCountSpanRef = document.getElementById('current_loaded_count');
     let currentLoadedCount = 0;
-    currentLoadedCountSpanRef.innerHTML = "";
-    totalLoadingCountSpanRef.innerHTML = "";
-    totalLoadingCountSpanRef.innerHTML = limit;
 
     for (let resultsIndex = 0; resultsIndex < dataNameAndDetailUrl.results.length; resultsIndex++) {
         let detailUrl = dataNameAndDetailUrl.results[resultsIndex].url;
@@ -48,7 +72,12 @@ async function processPokémonBatch(dataNameAndDetailUrl) {
         currentLoadedCount++;
         currentLoadedCountSpanRef.innerHTML = currentLoadedCount;
     }
+    await new Promise(resolve => requestAnimationFrame(resolve));
+    hideLoading();
+
+
 }
+
 
 async function fetchPokémonDetails(detailUrl) {
     let response = null;
@@ -74,7 +103,7 @@ function collectPokémonAttributes(dataNameAndDetailUrl, dataDetails, resultsInd
 
 function storePokémonAttributesInObj(pokémonName, pokémonImage, pokémonType) {
 
-    allLoadedPokémons[pokémonName] = {
+    allLoadedPokémonsObj[pokémonName] = {
         type: pokémonType,
         img: pokémonImage
     };
@@ -84,8 +113,7 @@ function storePokémonAttributesInObj(pokémonName, pokémonImage, pokémonType)
 }
 
 function renderPokémonListviewCard(pokémonName, pokémonImage, pokémonType) {
-    let pokémonListRef = document.getElementById('pokémon_list');
-    pokémonListRef.innerHTML += getHTMLListviewCard(pokémonName, pokémonImage, pokémonType);
+    allCurrentlyRenderedPokémonCards += getHTMLListviewCard(pokémonName, pokémonImage, pokémonType);
 }
 
 function processSearchPokémon() {
@@ -103,11 +131,11 @@ function processSearchPokémon() {
 function renderFilteredPokémonList(searchInput) {
     let searchResultsCount = 0;
 
-    for (let pokémonName in allLoadedPokémons) {
+    for (let pokémonName in allLoadedPokémonsObj) {
 
         if (pokémonName.toLowerCase().includes(searchInput)) {
-            let pokémonImage = allLoadedPokémons[pokémonName].img;
-            let pokémonType = allLoadedPokémons[pokémonName].type;
+            let pokémonImage = allLoadedPokémonsObj[pokémonName].img;
+            let pokémonType = allLoadedPokémonsObj[pokémonName].type;
 
             renderPokémonListviewCard(pokémonName, pokémonImage, pokémonType);
             searchResultsCount++;

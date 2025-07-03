@@ -1,3 +1,8 @@
+body {
+  background-color: #333;
+
+}
+
 header div {
   margin-bottom: 16px;
   display: flex;
@@ -6,7 +11,6 @@ header div {
 }
 
 main {
-  background-color: #333;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -30,7 +34,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 100px 0;
+  padding: 24px 0;
 }
 
 .listview_card {
@@ -98,13 +102,14 @@ main {
   align-items: center;
   /* height: 100vh; */
   flex-direction: column;
+  margin-bottom: 100px;
 }
 
 .pokéball {
-  height: 15vmin;
-  width: 15vmin;
+  height: 7.5vmin;
+  width: 7.5vmin;
   border-radius: 50%;
-  border: 0.9vmin solid black;
+  border: 0.45vmin solid black;
   background-image:
     radial-gradient(white 20%, white 20%, black 22%, black 28%, transparent 30%, transparent),
     linear-gradient(red 46%, black 46%, black 54%, white 54%);
@@ -116,8 +121,8 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 3vmin;
-  width: 3vmin;
+  height: 1.5vmin;
+  width: 1.5vmin;
   border-radius: 50%;
   border: solid 1px black;
   background-color: white;
@@ -170,6 +175,6 @@ main {
   text-align: center;
   font-size: 18px;
   color: white;
-  margin: 20px 0;
+  margin-top: 20px;
   font-weight: bold;
 }
