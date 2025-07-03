@@ -10,12 +10,13 @@
   <link rel="stylesheet" href="/styles/standard.css" />
   <link rel="stylesheet" href="/styles/assets.css" />
   <link rel="stylesheet" href="/styles/color.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
 
   <script src="./scripts/template.js"></script>
 
 
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="./assets/icons/favicon_pokédex.png" type="image/x-icon" />
 </head>
 
 <body onload="init()">
@@ -23,8 +24,12 @@
     <div class="container">
       <img class="logo" src="/assets/icons/logo_pokédex.png" alt="Pokédex Logo" />
       <div>
-        <input oninput="resetSearchIfEmpty(this.value)" type="search" id="search_input" placeholder="Search Pokémon"
-          minlength="3" />
+        <form onsubmit="processSearchPokémon(); return false;">
+          <input oninput="resetSearch(this.value)" type="search" id="search_input" placeholder="Type at least 3 letters"/>
+
+        </form>
+
+
         <button onclick="processSearchPokémon()" id="search_btn" class="search_btn"><img
             src="./assets/icons/search.svg" alt="search magnifying glass"></button>
       </div>

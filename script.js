@@ -13,7 +13,6 @@ async function loadNextPokémonBatch() {
     let dataNameAndDetailUrl = await fetchPokémonNameandDetailUrl();
     await processPokémonBatch(dataNameAndDetailUrl);
     offset += limit;
-    hideLoading();
 }
 
 function showLoading() {
@@ -58,7 +57,11 @@ async function processPokémonBatch(dataNameAndDetailUrl) {
 
     allCurrentlyRenderedPokémonCards = '';
     await processPokémonEach(dataNameAndDetailUrl)
-    pokémonListRef.innerHTML += allCurrentlyRenderedPokémonCards;
+
+    setTimeout(() => {
+        pokémonListRef.innerHTML += allCurrentlyRenderedPokémonCards;
+    }, 500);
+
 }
 
 async function processPokémonEach(dataNameAndDetailUrl) {
@@ -72,10 +75,9 @@ async function processPokémonEach(dataNameAndDetailUrl) {
         currentLoadedCount++;
         currentLoadedCountSpanRef.innerHTML = currentLoadedCount;
     }
-    await new Promise(resolve => requestAnimationFrame(resolve));
-    hideLoading();
-
-
+    setTimeout(() => {
+        hideLoading();
+    }, 500);
 }
 
 
@@ -117,11 +119,12 @@ function renderPokémonListviewCard(pokémonName, pokémonImage, pokémonType) {
 }
 
 function processSearchPokémon() {
-    let searchInput = document.getElementById('search_input').value.toLowerCase().trim();
+    let searchInput = document.getElementById('search_input').value.toLowerCase().trim().replace(/\s+/g, '');
     let pokémonListRef = document.getElementById('pokémon_list');
 
     if (searchInput.length > 2) {
         pokémonListRef.innerHTML = '';
+        resetSearch(searchInput, true);
         renderFilteredPokémonList(searchInput);
     }
 }
@@ -129,7 +132,11 @@ function processSearchPokémon() {
 
 
 function renderFilteredPokémonList(searchInput) {
+    let pokémonListRef = document.getElementById('pokémon_list');
     let searchResultsCount = 0;
+    allCurrentlyRenderedPokémonCards = '';
+
+
 
     for (let pokémonName in allLoadedPokémonsObj) {
 
@@ -141,17 +148,20 @@ function renderFilteredPokémonList(searchInput) {
             searchResultsCount++;
         }
     }
+    pokémonListRef.innerHTML = allCurrentlyRenderedPokémonCards;
 
     if (searchResultsCount == 0) {
         document.getElementById('not_found_container').classList.remove('d_none');
     }
 }
 
-function resetSearchIfEmpty(searchInput) {
+function resetSearch(searchInput, searching = false) {
     let notFoundContainerRef = document.getElementById('not_found_container');
-    if (searchInput.trim().length === 0) {
+    if (searchInput.length == 0) {
         notFoundContainerRef.classList.add('d_none');
         renderFilteredPokémonList(searchInput);
+    } else if (searchInput.length != 0 && searching == true) {
+        notFoundContainerRef.classList.add('d_none');
     }
 }
 
