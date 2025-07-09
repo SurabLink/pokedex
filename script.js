@@ -9,10 +9,20 @@ function init() {
 
 async function loadNextPokémonBatch() {
 
+    disableScroll();
     showLoading();
     let dataNameAndDetailUrl = await fetchPokémonNameandDetailUrl();
     await processPokémonBatch(dataNameAndDetailUrl);
+    enableScroll();
     offset += limit;
+}
+
+function disableScroll() {
+    document.body.classList.add('no_scroll');
+}
+
+function enableScroll() {
+    document.body.classList.remove('no_scroll');
 }
 
 function showLoading() {
@@ -164,8 +174,5 @@ function resetSearch(searchInput, searching = false) {
         notFoundContainerRef.classList.add('d_none');
     }
 }
-
-
-
 
 
