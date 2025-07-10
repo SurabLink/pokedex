@@ -1,6 +1,6 @@
 body {
   background-color: #333;
-  position: relative;
+  position: relative;  
 }
 
 header div {
@@ -15,6 +15,7 @@ main {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
 }
 
 .load_more {
@@ -211,4 +212,11 @@ main {
 .search_container {
   display: flex;
   gap: 16px;
+}
+
+.header_content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }

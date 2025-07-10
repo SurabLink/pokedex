@@ -13,7 +13,7 @@ header {
 
 
 .container {
-    width: 1440px;
+    max-width: 1440px;
 }
 
 footer {
@@ -51,4 +51,10 @@ a {
 
 .no_scroll {
   overflow: hidden;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

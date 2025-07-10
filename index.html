@@ -21,7 +21,7 @@
 
 <body onload="init()">
   <header>
-    <div class="container">
+    <div class="header_content container">
       <img class="logo" src="/assets/icons/logo_pokédex.png" alt="Pokédex Logo" />
       <div class="search_container">
         <form onsubmit="processSearchPokémon(); return false;">
@@ -30,34 +30,38 @@
         </form>
 
 
-        <button onclick="processSearchPokémon()" id="search_btn" class="search_btn"><img src="./assets/icons/input-search-bg.png"
-            alt="search magnifying glass"></button>
+        <button onclick="processSearchPokémon()" id="search_btn" class="search_btn"><img
+            src="./assets/icons/input-search-bg.png" alt="search magnifying glass"></button>
       </div>
     </div>
   </header>
 
   <main>
+    <div class="container">
 
-    <div class="d_none not_found_container" id="not_found_container">
-      <h3 class="not_found_text">Oops..</h3>
-      <p class="not_found_subtext">
-        Psyduck is confused. It couldn't find any matching Pokémon.<br>
-        Try loading more or searching for a different one.
-      </p>
-      <img src="./assets/img/psyduck-shake.gif" alt="psyduck" />
-    </div>
-
-    <section class="pokémon_list" id="pokémon_list">
-    </section>
-    <button onclick="loadNextPokémonBatch()" class="load_more d_none" id="load_more">Load More Pokémon</button>
-
-    <div class="load_container d_none" id="load_container">
-
-      <div class="pokéball shake">
-        <div class="button-blink"></div>
+      <div class="d_none not_found_container" id="not_found_container">
+        <h3 class="not_found_text">Oops..</h3>
+        <p class="not_found_subtext">
+          Psyduck is confused. It couldn't find any matching Pokémon.
+          Try loading more or searching for a different one.
+        </p>
+        <img src="./assets/img/psyduck-shake.gif" alt="psyduck" />
       </div>
-      <p class="load_feedback"><span id="current_loaded_count">0</span> out of <span id="total_loading_count">20</span>
-        Pokémons loaded...</p>
+
+      <section class="pokémon_list" id="pokémon_list">
+      </section>
+      <button onclick="loadNextPokémonBatch()" class="load_more d_none" id="load_more">Load More Pokémon</button>
+
+      <div class="load_container d_none" id="load_container">
+
+        <div class="pokéball shake">
+          <div class="button-blink"></div>
+        </div>
+        <p class="load_feedback"><span id="current_loaded_count">0</span> out of <span
+            id="total_loading_count">20</span>
+          Pokémons loaded...</p>
+      </div>
+
     </div>
 
 
