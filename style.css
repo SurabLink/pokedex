@@ -5,6 +5,7 @@ body {
 
 header div {
   margin-bottom: 16px;
+  margin-top: 16px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -183,4 +184,31 @@ main {
   color: white;
   margin-top: 20px;
   font-weight: bold;
+}
+
+.search_btn {
+  background-color: #e0773a;
+  height: 40px;
+  width: 56px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+}
+
+.search_btn:hover {
+  background-color: #e0773abb;
+}
+
+.search_input {
+  min-width: 250px;
+  height: 40px;
+  border-radius: 5px;
+  border: solid 2px #3333338f;
+  font-size: 16px;
+}
+
+.search_container {
+  display: flex;
+  gap: 16px;
 }

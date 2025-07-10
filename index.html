@@ -23,15 +23,15 @@
   <header>
     <div class="container">
       <img class="logo" src="/assets/icons/logo_pokédex.png" alt="Pokédex Logo" />
-      <div>
+      <div class="search_container">
         <form onsubmit="processSearchPokémon(); return false;">
-          <input oninput="resetSearch(this.value)" type="search" id="search_input" placeholder="Type at least 3 letters"/>
-
+          <input class="search_input" oninput="resetSearch(this.value)" type="search" id="search_input"
+            placeholder="Type at least 3 letters" />
         </form>
 
 
-        <button onclick="processSearchPokémon()" id="search_btn" class="search_btn"><img
-            src="./assets/icons/search.svg" alt="search magnifying glass"></button>
+        <button onclick="processSearchPokémon()" id="search_btn" class="search_btn"><img src="./assets/icons/input-search-bg.png"
+            alt="search magnifying glass"></button>
       </div>
     </div>
   </header>
@@ -54,9 +54,10 @@
     <div class="load_container d_none" id="load_container">
 
       <div class="pokéball shake">
-          <div class="button-blink"></div>
+        <div class="button-blink"></div>
       </div>
-      <p class="load_feedback"><span id="current_loaded_count">0</span> out of <span id="total_loading_count">20</span> Pokémons loaded...</p>
+      <p class="load_feedback"><span id="current_loaded_count">0</span> out of <span id="total_loading_count">20</span>
+        Pokémons loaded...</p>
     </div>
 
 
