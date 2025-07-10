@@ -61,12 +61,22 @@ main {
   margin: 8px 0;
 }
 
+
+.type_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+
 .pokémon_type {
   font-weight: bold;
   color: #333;
+  margin-right: 16px;
+  border-radius: 15px;
+  padding: 4px 8px;
 }
 
-/*  */
 .not_found_container {
   margin: 60px auto;
   text-align: center;

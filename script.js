@@ -108,24 +108,23 @@ async function fetchPokémonDetails(detailUrl) {
 function collectPokémonAttributes(dataNameAndDetailUrl, dataDetails, resultsIndex) {
     let pokémonName = dataNameAndDetailUrl.results[resultsIndex].name;
     let pokémonImage = dataDetails.sprites.other['official-artwork'].front_default;
-    let pokémonType = dataDetails.types[0].type.name;
+    let pokémonTypes = dataDetails.types.map(t => t.type.name);
 
-    storePokémonAttributesInObj(pokémonName, pokémonImage, pokémonType);
+    storePokémonAttributesInObj(pokémonName, pokémonImage, pokémonTypes);
 }
 
-function storePokémonAttributesInObj(pokémonName, pokémonImage, pokémonType) {
+function storePokémonAttributesInObj(pokémonName, pokémonImage, pokémonTypes) {
 
     allLoadedPokémonsObj[pokémonName] = {
-        type: pokémonType,
+        types: pokémonTypes,
         img: pokémonImage
     };
 
-    renderPokémonListviewCard(pokémonName, pokémonImage, pokémonType);
-
+    renderPokémonListviewCard(pokémonName, pokémonImage, pokémonTypes);
 }
 
-function renderPokémonListviewCard(pokémonName, pokémonImage, pokémonType) {
-    allCurrentlyRenderedPokémonCards += getHTMLListviewCard(pokémonName, pokémonImage, pokémonType);
+function renderPokémonListviewCard(pokémonName, pokémonImage, pokémonTypes) {
+    allCurrentlyRenderedPokémonCards += getHTMLListviewCard(pokémonName, pokémonImage, pokémonTypes);
 }
 
 function processSearchPokémon() {
@@ -152,9 +151,9 @@ function renderFilteredPokémonList(searchInput) {
 
         if (pokémonName.toLowerCase().includes(searchInput)) {
             let pokémonImage = allLoadedPokémonsObj[pokémonName].img;
-            let pokémonType = allLoadedPokémonsObj[pokémonName].type;
+            let pokémonTypes = allLoadedPokémonsObj[pokémonName].types;
 
-            renderPokémonListviewCard(pokémonName, pokémonImage, pokémonType);
+            renderPokémonListviewCard(pokémonName, pokémonImage, pokémonTypes);
             searchResultsCount++;
         }
     }

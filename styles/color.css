@@ -1,5 +1,5 @@
 .normal {
-    background-color: #A8A77E;
+    background-color: rgb(168, 167, 126);
 }
 
 .fighting {
@@ -75,5 +75,88 @@
 }
 
 .unknown {
-    background-color: #68A090;
+    background-color: rgb(104, 160, 144);
+}
+
+
+
+
+.normal_label {
+    background-color: rgb(190, 190, 143);
+}
+
+.fighting_label {
+    background-color: rgba(253, 73, 67, 0.8);
+}
+
+.flying_label {
+    background-color: rgba(185, 161, 252, 0.9);
+}
+
+.poison_label {
+    background-color: rgba(197, 79, 195, 0.8);
+}
+
+.ground_label {
+    background-color: rgba(252, 216, 125, 0.9);
+}
+
+.rock_label {
+    background-color: rgba(161, 142, 48, 0.75);
+}
+
+.bug_label {
+    background-color: rgb(196, 218, 32);
+}
+
+.ghost_label {
+    background-color: rgb(152, 118, 197);
+}
+
+.steel_label {
+    background-color: rgba(210, 210, 231, 0.9);
+}
+
+.fire_label {
+    background-color: rgb(255, 163, 92);
+}
+
+.water_label {
+    background-color: rgb(135, 173, 255);
+}
+
+.grass_label {
+    background-color: rgb(145, 230, 96);
+}
+
+.electric_label {
+    background-color: rgb(248, 226, 139);
+}
+
+.psychic_label {
+    background-color: rgba(255, 121, 161, 0.781);
+}
+
+.ice_label {
+    background-color: rgb(168, 245, 241);
+}
+
+.dragon_label {
+    background-color: rgba(123, 71, 255, 0.9);
+}
+
+.dark_label {
+    background-color: rgba(133, 103, 84, 0.9);
+}
+
+.fairy_label {
+    background-color: rgb(243, 160, 202);
+}
+
+.stellar_label {
+    background-color: rgba(204, 171, 41, 0.8);
+}
+
+.unknown_label {
+    background-color: rgb(143, 212, 193);
 }
