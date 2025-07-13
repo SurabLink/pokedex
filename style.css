@@ -53,6 +53,7 @@ main {
 
 .listview_card:hover {
   transform: scale(1.05);
+  cursor: pointer;
 }
 
 .listview_img {

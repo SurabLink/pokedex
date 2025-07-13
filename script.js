@@ -175,3 +175,87 @@ function resetSearch(searchInput, searching = false) {
 }
 
 
+function openOverlay(pokémonName) {
+    let overlayRef = document.getElementById('pokémon_overlay');
+    let morePokemonDetails = await fetchMorePokemonDetails(pokémonName);
+    collectPokémonAttributesForOverlay(morePokemonDetails);
+
+    overlayRef.innerHTML = getHTMLDialogOverlay(pokémonName);
+};
+
+async function fetchMorePokemonDetails(pokémonName) {
+    let url = `https://pokeapi.co/api/v2/pokemon/${pokémonName}`;
+    let response = null;
+    let dataDetails = null;
+
+    try {
+        response = await fetch(url);
+        dataDetails = await response.json();
+    } catch (error) {
+        console.error('Fehler beim Laden der Pokémon-Details:', error);
+    }
+
+    return dataDetails;
+}
+
+// ich möchte in allLoadedPokémonsObj mehr informationen hinzufügen zu den bereits vorhandenen einträgen im object.
+// in collectPokémonAttributesForOverlay überlege ich welche informationen ich hinzufügen möchte. Name, typ und bild habe ich bereits.
+// ich möchte 3 reiter hinzufügen: main, stats und evolution.
+// in main stehen die informationen: height, weight, base_experience und abilities.
+// in stats stehen die informationen: hp, attack, defense, special-attack, special-defense und speed.
+// in evolution möchte ich die evolution-kette hinzufügen, wenn vorhanden.
+
+
+function collectPokémonAttributesForOverlay(morePokemonDetails) {
+
+    storeMainAttributesInObj(morePokemonDetails);
+    storeStatsAttributesInObj(morePokemonDetails);
+    storeEvolutionAttributesInObj(morePokemonDetails);
+}
+
+function storeMainAttributesInObj(morePokemonDetails) {
+    let height = morePokemonDetails.height;
+    let weight = morePokemonDetails.weight;
+    let baseExperience = morePokemonDetails.base_experience;
+    let abilities = morePokemonDetails.abilities.map(a => a.ability.name);
+
+    Object.assign(allLoadedPokémonsObj[morePokemonDetails.name], {
+        Main: {
+            height: height,
+            weight: weight,
+            baseExperience: baseExperience,
+            abilities: abilities
+        }
+
+    });
+}
+
+function storeStatsAttributesInObj(morePokemonDetails) {
+    let hp = morePokemonDetails.stats.find(s => s.stat.name === 'hp').base_stat;
+    let attack = morePokemonDetails.stats.find(s => s.stat.name === 'attack').base_stat;
+    let defense = morePokemonDetails.stats.find(s => s.stat.name === 'defense').base_stat;
+    let specialAttack = morePokemonDetails.stats.find(s => s.stat.name === 'special-attack').base_stat;
+    let specialDefense = morePokemonDetails.stats.find(s => s.stat.name === 'special-defense').base_stat;
+    let speed = morePokemonDetails.stats.find(s => s.stat.name === 'speed').base_stat;
+
+    Object.assign(allLoadedPokémonsObj[morePokemonDetails.name], {
+        Stats: {
+            hp: hp,
+            attack: attack,
+            defense: defense,
+            specialAttack: specialAttack,
+            specialDefense: specialDefense,
+            speed: speed
+        }
+    });
+}
+
+function storeEvolutionAttributesInObj(morePokemonDetails) {
+
+    let evolutionChain = morePokemonDetails.evolution_chain ? morePokemonDetails.evolution_chain.url : null;
+
+    Object.assign(allLoadedPokémonsObj[morePokemonDetails.name], {
+        Evolution: {
+            evolutionChain: evolutionChain
+        }
+}
