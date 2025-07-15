@@ -175,51 +175,69 @@ function resetSearch(searchInput, searching = false) {
 }
 
 
-function openOverlay(pokémonName) {
+async function openOverlay(pokémonName) {
     let overlayRef = document.getElementById('pokémon_overlay');
-    let morePokemonDetails = await fetchMorePokemonDetails(pokémonName);
-    collectPokémonAttributesForOverlay(morePokemonDetails);
+    let overlayAttributesData = await fetchOverlayAttributesData(pokémonName);
+    let evolutionChainData = await fetchEvolutionChainData(overlayAttributesData);
+    collectPokémonAttributesForOverlay(overlayAttributesData, evolutionChainData);
 
     overlayRef.innerHTML = getHTMLDialogOverlay(pokémonName);
 };
 
-async function fetchMorePokemonDetails(pokémonName) {
-    let url = `https://pokeapi.co/api/v2/pokemon/${pokémonName}`;
+
+
+async function fetchOverlayAttributesData(pokémonName) {
+    let attributesUrl = `https://pokeapi.co/api/v2/pokemon/${pokémonName}`;
     let response = null;
-    let dataDetails = null;
+    let overlayAttributesData = null;
 
     try {
-        response = await fetch(url);
-        dataDetails = await response.json();
+        response = await fetch(attributesUrl);
+        overlayAttributesData = await response.json();
     } catch (error) {
         console.error('Fehler beim Laden der Pokémon-Details:', error);
     }
 
-    return dataDetails;
+    return overlayAttributesData;
 }
 
-// ich möchte in allLoadedPokémonsObj mehr informationen hinzufügen zu den bereits vorhandenen einträgen im object.
-// in collectPokémonAttributesForOverlay überlege ich welche informationen ich hinzufügen möchte. Name, typ und bild habe ich bereits.
-// ich möchte 3 reiter hinzufügen: main, stats und evolution.
-// in main stehen die informationen: height, weight, base_experience und abilities.
-// in stats stehen die informationen: hp, attack, defense, special-attack, special-defense und speed.
-// in evolution möchte ich die evolution-kette hinzufügen, wenn vorhanden.
+async function fetchEvolutionChainData(overlayAttributesData) {
+    let speciesUrl = overlayAttributesData.species.url;
+    let response = null;
+    let speciesData = null;
+    let evolutionChainData = null;
 
-
-function collectPokémonAttributesForOverlay(morePokemonDetails) {
-
-    storeMainAttributesInObj(morePokemonDetails);
-    storeStatsAttributesInObj(morePokemonDetails);
-    storeEvolutionAttributesInObj(morePokemonDetails);
+    try {
+        response = await fetch(speciesUrl);
+        speciesData = await response.json();
+        if (speciesData.evolution_chain) {
+            response = await fetch(speciesData.evolution_chain.url);
+            evolutionChainData = await response.json();
+        } else {
+            evolutionChainData = null;
+        }
+    } catch (error) {
+        console.error('Fehler beim Laden der Evolutionskette:', error);
+    }
+    return evolutionChainData;
 }
 
-function storeMainAttributesInObj(morePokemonDetails) {
-    let height = morePokemonDetails.height;
-    let weight = morePokemonDetails.weight;
-    let baseExperience = morePokemonDetails.base_experience;
-    let abilities = morePokemonDetails.abilities.map(a => a.ability.name);
 
-    Object.assign(allLoadedPokémonsObj[morePokemonDetails.name], {
+
+function collectPokémonAttributesForOverlay(overlayAttributesData, evolutionChainData) {
+
+    storeMainAttributesInObj(overlayAttributesData);
+    storeStatsAttributesInObj(overlayAttributesData);
+    extractEvolutionChain(overlayAttributesData, evolutionChainData);
+}
+
+function storeMainAttributesInObj(overlayAttributesData) {
+    let height = overlayAttributesData.height;
+    let weight = overlayAttributesData.weight;
+    let baseExperience = overlayAttributesData.base_experience;
+    let abilities = overlayAttributesData.abilities.map(a => a.ability.name);
+
+    Object.assign(allLoadedPokémonsObj[overlayAttributesData.name], {
         Main: {
             height: height,
             weight: weight,
@@ -230,15 +248,15 @@ function storeMainAttributesInObj(morePokemonDetails) {
     });
 }
 
-function storeStatsAttributesInObj(morePokemonDetails) {
-    let hp = morePokemonDetails.stats.find(s => s.stat.name === 'hp').base_stat;
-    let attack = morePokemonDetails.stats.find(s => s.stat.name === 'attack').base_stat;
-    let defense = morePokemonDetails.stats.find(s => s.stat.name === 'defense').base_stat;
-    let specialAttack = morePokemonDetails.stats.find(s => s.stat.name === 'special-attack').base_stat;
-    let specialDefense = morePokemonDetails.stats.find(s => s.stat.name === 'special-defense').base_stat;
-    let speed = morePokemonDetails.stats.find(s => s.stat.name === 'speed').base_stat;
+function storeStatsAttributesInObj(overlayAttributesData) {
+    let hp = overlayAttributesData.stats.find(s => s.stat.name === 'hp').base_stat;
+    let attack = overlayAttributesData.stats.find(s => s.stat.name === 'attack').base_stat;
+    let defense = overlayAttributesData.stats.find(s => s.stat.name === 'defense').base_stat;
+    let specialAttack = overlayAttributesData.stats.find(s => s.stat.name === 'special-attack').base_stat;
+    let specialDefense = overlayAttributesData.stats.find(s => s.stat.name === 'special-defense').base_stat;
+    let speed = overlayAttributesData.stats.find(s => s.stat.name === 'speed').base_stat;
 
-    Object.assign(allLoadedPokémonsObj[morePokemonDetails.name], {
+    Object.assign(allLoadedPokémonsObj[overlayAttributesData.name], {
         Stats: {
             hp: hp,
             attack: attack,
@@ -250,12 +268,46 @@ function storeStatsAttributesInObj(morePokemonDetails) {
     });
 }
 
-function storeEvolutionAttributesInObj(morePokemonDetails) {
+function extractEvolutionChain(overlayAttributesData, evolutionChainData) {
+    let evoNamesArr = [];
+    let evoImgUrlsArr = [];
+    let currentEvoObj = evolutionChainData && evolutionChainData.chain ? evolutionChainData.chain : null;
+    evoNamesArr.push(currentEvoObj.species.name);
 
-    let evolutionChain = morePokemonDetails.evolution_chain ? morePokemonDetails.evolution_chain.url : null;
+    pushEvoNames(evoNamesArr, currentEvoObj);
+    pushEvoImgUrls(evoNamesArr, evoImgUrlsArr);
+    storeEvolutionChainInObj(overlayAttributesData, evoNamesArr, evoImgUrlsArr);
 
-    Object.assign(allLoadedPokémonsObj[morePokemonDetails.name], {
-        Evolution: {
-            evolutionChain: evolutionChain
+}
+
+function pushEvoNames(evoNamesArr, currentEvoObj) {
+
+    if (currentEvoObj.evolves_to && currentEvoObj.evolves_to.length > 0) {
+        currentEvoObj.evolves_to.forEach(evo => {
+            evoNamesArr.push(evo.species.name);
+            if (evo.evolves_to && evo.evolves_to.length > 0) {
+                evo.evolves_to.forEach(finalEvo => {
+                    evoNamesArr.push(finalEvo.species.name);
+                });
+            };
+        });
+    };
+};
+
+function pushEvoImgUrls(evoNamesArr, evoImgUrlsArr) {
+
+    for (let i = 0; i < evoNamesArr.length; i++) {
+        let currentEvoImgUrl = `https://img.pokemondb.net/artwork/large/${evoNamesArr[i]}.jpg`;
+        evoImgUrlsArr.push(currentEvoImgUrl);
+    }
+}
+
+function storeEvolutionChainInObj(overlayAttributesData, evoNamesArr, evoImgUrlsArr) {
+
+    Object.assign(allLoadedPokémonsObj[overlayAttributesData.name], {
+        evolutionChain: {
+            evoNames: evoNamesArr,
+            evoImgUrls: evoImgUrlsArr
         }
+    });
 }
