@@ -181,6 +181,7 @@ async function openOverlay(pokémonName) {
     let evolutionChainData = await fetchEvolutionChainData(overlayAttributesData);
     collectPokémonAttributesForOverlay(overlayAttributesData, evolutionChainData);
 
+    // Fehlerbehebung: Pokémon-Objekt statt Name übergeben
     overlayRef.innerHTML = getHTMLDialogOverlay(pokémonName);
 };
 
@@ -238,7 +239,7 @@ function storeMainAttributesInObj(overlayAttributesData) {
     let abilities = overlayAttributesData.abilities.map(a => a.ability.name);
 
     Object.assign(allLoadedPokémonsObj[overlayAttributesData.name], {
-        Main: {
+        main: {
             height: height,
             weight: weight,
             baseExperience: baseExperience,
@@ -257,7 +258,7 @@ function storeStatsAttributesInObj(overlayAttributesData) {
     let speed = overlayAttributesData.stats.find(s => s.stat.name === 'speed').base_stat;
 
     Object.assign(allLoadedPokémonsObj[overlayAttributesData.name], {
-        Stats: {
+        stats: {
             hp: hp,
             attack: attack,
             defense: defense,
