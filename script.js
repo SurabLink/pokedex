@@ -176,11 +176,15 @@ function resetSearch(searchInput, searching = false) {
 
 
 async function openOverlay(pokémonName) {
-    let overlayRef = document.getElementById('pokémon_overlay');
+    let pokémonOverlayWrapperRef = document.getElementById('pokémon_overlay_wrapper');
+    let overlayRef = document.getElementById('overlay');
     let overlayAttributesData = await fetchOverlayAttributesData(pokémonName);
     let evolutionChainData = await fetchEvolutionChainData(overlayAttributesData);
+
     collectPokémonAttributesForOverlay(overlayAttributesData, evolutionChainData);
-    overlayRef.innerHTML = getHTMLDialogOverlay(pokémonName);
+    pokémonOverlayWrapperRef.innerHTML = getHTMLDialogOverlay(pokémonName);
+    overlayRef.classList.remove('d_none');
+
 };
 
 
@@ -346,3 +350,23 @@ function openEvoTab() {
     statsTabContentRef.classList.add('d_none');
     evoTabContentRef.classList.remove('d_none');
 };
+
+function preventClose(event) {
+    event.stopPropagation();
+    // enableScroll();
+
+}
+
+// function closeOverlay() {
+//     let overlayRef = document.getElementById('pokémon_overlay');
+//     overlayRef.classList.add('d_none');
+//     overlayRef.innerHTML = '';
+//     enableScroll();
+// }
+
+function closeOverlay() {
+    let overlayRef = document.getElementById('overlay');
+    overlayRef.classList.add('d_none');
+        enableScroll();
+
+}

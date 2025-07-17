@@ -1,7 +1,7 @@
 function getHTMLListviewCard(pokémonName, pokémonImage, pokémonTypes) {
 
   return `
-        <div onclick="openOverlay('${pokémonName}')" class="listview_card ${pokémonTypes[0]}">
+        <div onclick="openOverlay('${pokémonName}'); disableScroll()" class="listview_card ${pokémonTypes[0]}">
           <h2 class="card_title">${pokémonName.charAt(0).toUpperCase() + pokémonName.slice(1)}</h2>
           <img src="${pokémonImage}" alt="${pokémonName.charAt(0).toUpperCase() + pokémonName.slice(1)}" class="listview_img">
           <div class="type_container">
@@ -18,7 +18,7 @@ function getHTMLListviewCard(pokémonName, pokémonImage, pokémonTypes) {
 function getHTMLDialogOverlay(pokémonName) {
 
   return `
-    <div class="overlay_content" onclick="preventClose(event)">
+    <div class="overlay_content ${allLoadedPokémonsObj[pokémonName].types[0]} dialog" onclick="preventClose(event)">
       <div onclick="closeOverlay()" class="close_button"></div>
       <div class="overlay_title"><h2>${pokémonName.charAt(0).toUpperCase() + pokémonName.slice(1)}</h2></div>
       <img src="${allLoadedPokémonsObj[pokémonName].img}" alt="${pokémonName.charAt(0).toUpperCase() + pokémonName.slice(1)}" class="listview_img">
@@ -93,6 +93,10 @@ function getHTMLDialogOverlay(pokémonName) {
             `).join('')}
 
       </div>
+
+    <div onclick="slider('prev', ${pokémonName})" class="arrow arrow_left"></div>
+    <div onclick="slider('next', ${pokémonName})" class="arrow arrow_right"></div>
+
     
     </div> 
     `
