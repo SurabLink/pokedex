@@ -1,6 +1,6 @@
 body {
   background-color: #333;
-  position: relative;  
+  position: relative;
 }
 
 header div {
@@ -72,7 +72,7 @@ main {
 
 .pokémon_type {
   font-weight: bold;
-  color: #333;
+  color: rgba(0, 0, 0, 0.5);
   margin-right: 16px;
   border-radius: 15px;
   padding: 4px 8px;
@@ -92,12 +92,14 @@ main {
 }
 
 .not_found_text {
+  color: #333;
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 12px;
 }
 
 .not_found_subtext {
+  color: #333;
   font-size: 20px;
   margin-bottom: 20px;
   line-height: 1.5;
@@ -218,6 +220,7 @@ main {
   border-radius: 5px;
   border: solid 2px #3333338f;
   font-size: 16px;
+  color: black
 }
 
 .search_container {

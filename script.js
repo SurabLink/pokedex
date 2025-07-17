@@ -180,8 +180,6 @@ async function openOverlay(pokémonName) {
     let overlayAttributesData = await fetchOverlayAttributesData(pokémonName);
     let evolutionChainData = await fetchEvolutionChainData(overlayAttributesData);
     collectPokémonAttributesForOverlay(overlayAttributesData, evolutionChainData);
-
-    // Fehlerbehebung: Pokémon-Objekt statt Name übergeben
     overlayRef.innerHTML = getHTMLDialogOverlay(pokémonName);
 };
 
@@ -271,34 +269,40 @@ function storeStatsAttributesInObj(overlayAttributesData) {
 
 function extractEvolutionChain(overlayAttributesData, evolutionChainData) {
     let evoNamesArr = [];
+    let pokémonIdsArr = [];
     let evoImgUrlsArr = [];
     let currentEvoObj = evolutionChainData && evolutionChainData.chain ? evolutionChainData.chain : null;
+    // let pokémonId = overlayAttributesData.id;
     evoNamesArr.push(currentEvoObj.species.name);
+    pokémonIdsArr.push(currentEvoObj.species.url ? currentEvoObj.species.url.match(/\/pokemon-species\/(\d+)\//)[1] : null);
 
-    pushEvoNames(evoNamesArr, currentEvoObj);
-    pushEvoImgUrls(evoNamesArr, evoImgUrlsArr);
+    pushEvoNamesandIdsArr(evoNamesArr, pokémonIdsArr, currentEvoObj);
+    pushEvoImgUrls(pokémonIdsArr, evoImgUrlsArr);
     storeEvolutionChainInObj(overlayAttributesData, evoNamesArr, evoImgUrlsArr);
 
 }
 
-function pushEvoNames(evoNamesArr, currentEvoObj) {
+function pushEvoNamesandIdsArr(evoNamesArr, pokémonIdsArr, currentEvoObj) {
 
     if (currentEvoObj.evolves_to && currentEvoObj.evolves_to.length > 0) {
         currentEvoObj.evolves_to.forEach(evo => {
             evoNamesArr.push(evo.species.name);
+            pokémonIdsArr.push(evo.species.url.match(/\/pokemon-species\/(\d+)\//)[1]);
+
             if (evo.evolves_to && evo.evolves_to.length > 0) {
                 evo.evolves_to.forEach(finalEvo => {
                     evoNamesArr.push(finalEvo.species.name);
+                    pokémonIdsArr.push(finalEvo.species.url.match(/\/pokemon-species\/(\d+)\//)[1]);
                 });
             };
         });
     };
 };
 
-function pushEvoImgUrls(evoNamesArr, evoImgUrlsArr) {
+function pushEvoImgUrls(pokémonIdsArr, evoImgUrlsArr) {
 
-    for (let i = 0; i < evoNamesArr.length; i++) {
-        let currentEvoImgUrl = `https://img.pokemondb.net/artwork/large/${evoNamesArr[i]}.jpg`;
+    for (let i = 0; i < pokémonIdsArr.length; i++) {
+        let currentEvoImgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokémonIdsArr[i]}.png`;
         evoImgUrlsArr.push(currentEvoImgUrl);
     }
 }
@@ -312,3 +316,33 @@ function storeEvolutionChainInObj(overlayAttributesData, evoNamesArr, evoImgUrls
         }
     });
 }
+
+function openMainTab() {
+    let mainTabContentRef = document.getElementById('main_tab_content');
+    let statsTabContentRef = document.getElementById('stats_tab_content');
+    let evoTabContentRef = document.getElementById('evo_tab_content');
+
+    mainTabContentRef.classList.remove('d_none');
+    statsTabContentRef.classList.add('d_none');
+    evoTabContentRef.classList.add('d_none');
+};
+
+function openStatsTab() {
+    let mainTabContentRef = document.getElementById('main_tab_content');
+    let statsTabContentRef = document.getElementById('stats_tab_content');
+    let evoTabContentRef = document.getElementById('evo_tab_content');
+
+    mainTabContentRef.classList.add('d_none');
+    statsTabContentRef.classList.remove('d_none');
+    evoTabContentRef.classList.add('d_none');
+};
+
+function openEvoTab() {
+    let mainTabContentRef = document.getElementById('main_tab_content');
+    let statsTabContentRef = document.getElementById('stats_tab_content');
+    let evoTabContentRef = document.getElementById('evo_tab_content');
+
+    mainTabContentRef.classList.add('d_none');
+    statsTabContentRef.classList.add('d_none');
+    evoTabContentRef.classList.remove('d_none');
+};
