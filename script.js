@@ -178,20 +178,18 @@ function resetSearch(searchInput, searching = false) {
 
 
 async function openOverlay(pokémonName) {
-    let overlayContentRef = document.getElementById('overlay_content');
     let pokémonOverlayWrapperRef = document.getElementById('pokémon_overlay_wrapper');
     let overlayRef = document.getElementById('overlay');
     overlayRef.classList.remove('d_none');
-    if (overlayContentRef) {
-        overlayContentRef.innerHTML = '';
+    pokémonOverlayWrapperRef.innerHTML = '';
+
+    if (!allLoadedPokémonsObj[pokémonName].main || !allLoadedPokémonsObj[pokémonName].stats || !allLoadedPokémonsObj[pokémonName].evolutionChain) {
+        showLoadingOverlay();
+        let overlayAttributesData = await fetchOverlayAttributesData(pokémonName);
+        let evolutionChainData = await fetchEvolutionChainData(overlayAttributesData);
+        hideLoadingOverlay();
+        collectPokémonAttributesForOverlay(overlayAttributesData, evolutionChainData);
     }
-    showLoadingOverlay();
-
-    let overlayAttributesData = await fetchOverlayAttributesData(pokémonName);
-    let evolutionChainData = await fetchEvolutionChainData(overlayAttributesData);
-    hideLoadingOverlay();
-
-    collectPokémonAttributesForOverlay(overlayAttributesData, evolutionChainData);
     pokémonOverlayWrapperRef.innerHTML = getHTMLDialogOverlay(pokémonName);
 };
 

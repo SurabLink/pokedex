@@ -43,7 +43,7 @@ main {
   background-color: #f7d02c;
   padding: 16px;
   margin: 12px;
-  border-radius: 10px;
+  border-radius: 5%;
   text-align: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   width: 300px;
@@ -125,6 +125,33 @@ main {
   height: 100vh;
   width: 100vw;
 }
+
+img {
+  object-fit: cover;
+}
+
+.load_container_overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 70;
+  height: 700px;
+  width: 700px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5%;
+}
+
+.overlay_img {
+  width: auto;
+  height: 350px;
+  margin: 8px 0;
+}
+
 
 .pokéball {
   height: 80px;
@@ -237,7 +264,7 @@ main {
 
 .dialog {
   position: fixed;
-  top: 10%;
+  top: 12%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -282,8 +309,7 @@ main {
 }
 
 .close_button:hover {
-  background-color: rgba(0, 0, 0, 0.527);
-  border-radius: 50%;
+  background-color: rgb(235, 43, 43);
 }
 
 .overlay_title {
@@ -292,14 +318,14 @@ main {
 
 
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.418);
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .overlay_content {
@@ -308,44 +334,44 @@ main {
 }
 
 .arrow {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    position: fixed;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: fixed;
 }
 
 .arrow::before {
-    content: '';
-    display: inline-block;
-    border: solid white;
-    border-width: 0 4px 4px 0;
-    padding: 16px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(45deg);
+  content: '';
+  display: inline-block;
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  padding: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .arrow_left {
-    position: absolute;
-    top: 45%;
-    left: 1%;
+  position: absolute;
+  top: 45%;
+  left: 1%;
 }
 
 .arrow_left::before {
-    transform: translate(-30%, -50%) rotate(135deg);
+  transform: translate(-30%, -50%) rotate(135deg);
 }
 
 .arrow_right {
-    position: absolute;
-    top: 45%;
-    right: 1%;
+  position: absolute;
+  top: 45%;
+  right: 1%;
 }
 
 .arrow_right::before {
-    transform: translate(-70%, -50%) rotate(-45deg);
+  transform: translate(-70%, -50%) rotate(-45deg);
 }
 
 .arrow:hover::before {
