@@ -52,7 +52,7 @@
       </section>
       <button onclick="loadNextPokémonBatch()" class="load_more d_none" id="load_more">Load More Pokémon</button>
 
-      <div class="load_container d_none" id="load_container">
+      <div class="load_container d_none" id="load_container_listview_cards">
 
         <div class="pokéball shake">
           <div class="button-blink"></div>
@@ -62,12 +62,19 @@
           Pokémons loaded...</p>
       </div>
 
+      <div class="load_container d_none" id="load_container_overlay">
+        <div class="pokéball shake">
+          <div class="button-blink"></div>
+        </div>
+      </div>
+
+
     </div>
 
   </main>
-   <div onclick="closeOverlay()" id="overlay" class="overlay d_none">
-        <div class="pokémon_overlay_wrapper" id="pokémon_overlay_wrapper"></div>
-   </div>
+  <div onclick="closeOverlay()" id="overlay" class="overlay d_none">
+    <div class="pokémon_overlay_wrapper" id="pokémon_overlay_wrapper"></div>
+  </div>
 
   <script src="script.js"></script>
 

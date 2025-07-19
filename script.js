@@ -10,7 +10,7 @@ function init() {
 async function loadNextPokémonBatch() {
 
     disableScroll();
-    showLoading();
+    showLoadingListviewCards();
     let dataNameAndDetailUrl = await fetchPokémonNameandDetailUrl();
     await processPokémonBatch(dataNameAndDetailUrl);
     enableScroll();
@@ -25,11 +25,11 @@ function enableScroll() {
     document.body.classList.remove('no_scroll');
 }
 
-function showLoading() {
+function showLoadingListviewCards() {
     let currentLoadedCountSpanRef = document.getElementById('current_loaded_count');
     let totalLoadingCountSpanRef = document.getElementById('total_loading_count');
     let loadMoreRef = document.getElementById('load_more');
-    let loadContainerRef = document.getElementById('load_container');
+    let loadContainerRef = document.getElementById('load_container_listview_cards');
 
     currentLoadedCountSpanRef.innerHTML = 0;
     totalLoadingCountSpanRef.innerHTML = limit;
@@ -38,9 +38,9 @@ function showLoading() {
     loadContainerRef.classList.remove('d_none');
 }
 
-function hideLoading() {
+function hideLoadingListviewCards() {
     let loadMoreRef = document.getElementById('load_more');
-    let loadContainerRef = document.getElementById('load_container');
+    let loadContainerRef = document.getElementById('load_container_listview_cards');
 
     loadMoreRef.disabled = false;
     loadMoreRef.classList.remove('d_none');
@@ -86,7 +86,7 @@ async function processPokémonEach(dataNameAndDetailUrl) {
         currentLoadedCountSpanRef.innerHTML = currentLoadedCount;
     }
     setTimeout(() => {
-        hideLoading();
+        hideLoadingListviewCards();
     }, 500);
 }
 
@@ -109,15 +109,17 @@ function collectPokémonAttributes(dataNameAndDetailUrl, dataDetails, resultsInd
     let pokémonName = dataNameAndDetailUrl.results[resultsIndex].name;
     let pokémonImage = dataDetails.sprites.other['official-artwork'].front_default;
     let pokémonTypes = dataDetails.types.map(t => t.type.name);
+    let pokémonId = dataDetails.id;
 
-    storePokémonAttributesInObj(pokémonName, pokémonImage, pokémonTypes);
+    storePokémonAttributesInObj(pokémonName, pokémonImage, pokémonTypes, pokémonId);
 }
 
-function storePokémonAttributesInObj(pokémonName, pokémonImage, pokémonTypes) {
+function storePokémonAttributesInObj(pokémonName, pokémonImage, pokémonTypes, pokémonId) {
 
     allLoadedPokémonsObj[pokémonName] = {
         types: pokémonTypes,
-        img: pokémonImage
+        img: pokémonImage,
+        id: pokémonId
     };
 
     renderPokémonListviewCard(pokémonName, pokémonImage, pokémonTypes);
@@ -176,17 +178,32 @@ function resetSearch(searchInput, searching = false) {
 
 
 async function openOverlay(pokémonName) {
+    let overlayContentRef = document.getElementById('overlay_content');
     let pokémonOverlayWrapperRef = document.getElementById('pokémon_overlay_wrapper');
     let overlayRef = document.getElementById('overlay');
+    overlayRef.classList.remove('d_none');
+    if (overlayContentRef) {
+        overlayContentRef.innerHTML = '';
+    }
+    showLoadingOverlay();
+
     let overlayAttributesData = await fetchOverlayAttributesData(pokémonName);
     let evolutionChainData = await fetchEvolutionChainData(overlayAttributesData);
+    hideLoadingOverlay();
 
     collectPokémonAttributesForOverlay(overlayAttributesData, evolutionChainData);
     pokémonOverlayWrapperRef.innerHTML = getHTMLDialogOverlay(pokémonName);
-    overlayRef.classList.remove('d_none');
-
 };
 
+function showLoadingOverlay() {
+    let loadContainerRef = document.getElementById('load_container_overlay');
+    loadContainerRef.classList.remove('d_none');
+
+}
+function hideLoadingOverlay() {
+    let loadContainerRef = document.getElementById('load_container_overlay');
+    loadContainerRef.classList.add('d_none');
+}
 
 
 async function fetchOverlayAttributesData(pokémonName) {
@@ -353,20 +370,24 @@ function openEvoTab() {
 
 function preventClose(event) {
     event.stopPropagation();
-    // enableScroll();
-
 }
-
-// function closeOverlay() {
-//     let overlayRef = document.getElementById('pokémon_overlay');
-//     overlayRef.classList.add('d_none');
-//     overlayRef.innerHTML = '';
-//     enableScroll();
-// }
 
 function closeOverlay() {
     let overlayRef = document.getElementById('overlay');
     overlayRef.classList.add('d_none');
-        enableScroll();
+    enableScroll();
+}
 
+function slider(direction, pokémonName, pokémonId) {
+    let pokémonNamesArr = Object.keys(allLoadedPokémonsObj)
+    let newPokémonName = null;
+
+
+    if (direction === 'next') {
+        newPokémonName = pokémonNamesArr[(pokémonId) % pokémonNamesArr.length];
+    } else if (direction === 'prev') {
+        newPokémonName = pokémonNamesArr[(pokémonId - 2 + pokémonNamesArr.length) % pokémonNamesArr.length];
+    }
+
+    openOverlay(newPokémonName);
 }

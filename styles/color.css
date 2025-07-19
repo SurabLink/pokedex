@@ -3,80 +3,167 @@
 }
 
 .fighting {
-    background-color: #C22E28;
+    background-color: rgb(194, 46, 40);
 }
 
 .flying {
-    background-color: #A98FF3;
+    background-color: rgb(169, 143, 243);
 }
 
 .poison {
-    background-color: #A33EA1;
+    background-color: rgb(163, 62, 161);
 }
 
 .ground {
-    background-color: #E2BF65;
+    background-color: rgb(226, 191, 101);
 }
 
 .rock {
-    background-color: #B6A136;
+    background-color: rgb(182, 161, 54);
 }
 
 .bug {
-    background-color: #A6B91A;
+    background-color: rgb(166, 185, 26);
 }
 
 .ghost {
-    background-color: #735797;
+    background-color: rgb(115, 87, 151);
 }
 
 .steel {
-    background-color: #B7B7CE;
+    background-color: rgb(183, 183, 206);
 }
 
 .fire {
-    background-color: #EE8130;
+    background-color: rgb(238, 129, 48);
 }
 
 .water {
-    background-color: #6390F0;
+    background-color: rgb(99, 144, 240);
 }
 
 .grass {
-    background-color: #7AC74C;
+    background-color: rgb(122, 199, 76);
 }
 
 .electric {
-    background-color: #F7D02C;
+    background-color: rgb(247, 208, 44);
 }
 
 .psychic {
-    background-color: #F95587;
+    background-color: rgb(249, 85, 135);
 }
 
 .ice {
-    background-color: #96D9D6;
+    background-color: rgb(150, 217, 214);
 }
 
 .dragon {
-    background-color: #6F35FC;
+    background-color: rgb(111, 53, 252);
 }
 
 .dark {
-    background-color: #705746;
+    background-color: rgb(112, 87, 70);
 }
 
 .fairy {
-    background-color: #D685AD;
+    background-color: rgb(214, 133, 173);
 }
 
 .stellar {
-    background-color: #F8D030;
+    background-color: rgb(248, 208, 48);
 }
 
 .unknown {
     background-color: rgb(104, 160, 144);
 }
+
+
+
+
+.normal.transparent {
+    background-color: rgba(168, 167, 126, 0.925);
+}
+
+.fighting.transparent {
+    background-color: rgba(194, 45, 40, 0.925);
+}
+
+.flying.transparent {
+    background-color: rgba(170, 143, 243, 0.925);
+}
+
+.poison.transparent {
+    background-color: rgba(163, 62, 161, 0.925);
+}
+
+.ground.transparent {
+    background-color: rgba(226, 191, 101, 0.925);
+}
+
+.rock.transparent {
+    background-color: rgba(182, 161, 54, 0.925);
+}
+
+.bug.transparent {
+    background-color: rgba(166, 185, 26, 0.925);
+}
+
+.ghost.transparent {
+    background-color: rgba(115, 87, 151, 0.925);
+}
+
+.steel.transparent {
+    background-color: rgba(183, 183, 206, 0.925);
+}
+
+.fire.transparent {
+    background-color: rgba(238, 130, 48, 0.925);
+}
+
+.water.transparent {
+    background-color: rgba(99, 144, 240, 0.925);
+}
+
+.grass.transparent {
+    background-color: rgba(121, 199, 76, 0.925);
+}
+
+.electric.transparent {
+    background-color: rgba(247, 206, 44, 0.925);
+}
+
+.psychic.transparent {
+    background-color: rgba(249, 85, 134, 0.925);
+}
+
+.ice.transparent {
+    background-color: rgba(150, 217, 214, 0.925);
+}
+
+.dragon.transparent {
+    background-color: rgba(109, 53, 252, 0.925);
+}
+
+.dark.transparent {
+    background-color: rgba(112, 87, 70, 0.925);
+}
+
+.fairy.transparent {
+    background-color: rgba(214, 133, 173, 0.925);
+}
+
+.stellar.transparent {
+    background-color: rgba(248, 208, 48, 0.925);
+}
+
+.unknown.transparent {
+    background-color: rgba(104, 160, 144, 0.925);
+}
+
+
+
+
 
 
 
