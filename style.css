@@ -25,4 +25,15 @@ main {
   width: 100%;
 }
 
+.footer_content_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
+}
+
+.footer_pokéball_img {
+  width: 40px;
+}
 
