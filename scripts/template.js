@@ -28,9 +28,9 @@ function getHTMLDialogOverlay(pokémonName) {
         ${allLoadedPokémonsObj[pokémonName].types[1].charAt(0).toUpperCase() + allLoadedPokémonsObj[pokémonName].types[1].slice(1)}</span>` : ''}
       </div>
       <div class="overlay_tabs">
-        <button class="main_tab_btn" id="main_tab_btn" onclick="openMainTab('${pokémonName}')">Main</button>
-        <button class="stats_tab_btn" id="stats_tab_btn" onclick="openStatsTab('${pokémonName}')">Stats</button>
-        <button class="evo_tab_btn" id="evo_tab_btn" onclick="openEvoTab('${pokémonName}')">Evolution</button>
+        <button class="main_tab_btn" id="main_tab_btn" onclick="handleMainTabSwitch('${pokémonName}')">Main</button>
+        <button class="stats_tab_btn" id="stats_tab_btn" onclick="handleStatsTabSwitch('${pokémonName}')">Stats</button>
+        <button class="evo_tab_btn" id="evo_tab_btn" onclick="handleEvoTabSwitch('${pokémonName}')">Evolution</button>
       </div>
 
       <div class="tab_content">
@@ -95,8 +95,8 @@ function getHTMLDialogOverlay(pokémonName) {
 
       </div>
 
-    <div onclick="slider('prev', '${pokémonName}', '${allLoadedPokémonsObj[pokémonName].id}')" class="arrow arrow_left"></div>
-    <div onclick="slider('next', '${pokémonName}', '${allLoadedPokémonsObj[pokémonName].id}')" class="arrow arrow_right"></div>
+    <div onclick="slider('prev', '${allLoadedPokémonsObj[pokémonName].id}')" class="arrow arrow_left"></div>
+    <div onclick="slider('next', '${allLoadedPokémonsObj[pokémonName].id}')" class="arrow arrow_right"></div>
 
     
     </div> 

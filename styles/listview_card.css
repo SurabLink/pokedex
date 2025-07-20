@@ -1,0 +1,46 @@
+
+.pokémon_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+.listview_card {
+  background-color: #f7d02c;
+  padding: 16px;
+  margin: 12px;
+  border-radius: 5%;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.listview_card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.listview_img {
+  width: auto;
+  height: 200px;
+  margin: 8px 0;
+}
+
+.type_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+
+.pokémon_type {
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.5);
+  margin-right: 16px;
+  border-radius: 15px;
+  padding: 4px 8px;
+}
