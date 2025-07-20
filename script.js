@@ -2,6 +2,8 @@ let offset = 0;
 const limit = 20;
 let allLoadedPokémonsObj = {};
 let allCurrentlyRenderedPokémonCards = '';
+let activeTab = 'main';
+
 
 function init() {
     loadNextPokémonBatch();
@@ -122,11 +124,11 @@ function storePokémonAttributesInObj(pokémonName, pokémonImage, pokémonTypes
         id: pokémonId
     };
 
-    renderPokémonListviewCard(pokémonName, pokémonImage, pokémonTypes);
+    renderPokémonListviewCard(pokémonName, pokémonImage, pokémonTypes, pokémonId);
 }
 
-function renderPokémonListviewCard(pokémonName, pokémonImage, pokémonTypes) {
-    allCurrentlyRenderedPokémonCards += getHTMLListviewCard(pokémonName, pokémonImage, pokémonTypes);
+function renderPokémonListviewCard(pokémonName, pokémonImage, pokémonTypes, pokémonId) {
+    allCurrentlyRenderedPokémonCards += getHTMLListviewCard(pokémonName, pokémonImage, pokémonTypes, pokémonId);
 }
 
 function processSearchPokémon() {
@@ -147,15 +149,13 @@ function renderFilteredPokémonList(searchInput) {
     let searchResultsCount = 0;
     allCurrentlyRenderedPokémonCards = '';
 
-
-
     for (let pokémonName in allLoadedPokémonsObj) {
 
         if (pokémonName.toLowerCase().includes(searchInput)) {
             let pokémonImage = allLoadedPokémonsObj[pokémonName].img;
             let pokémonTypes = allLoadedPokémonsObj[pokémonName].types;
-
-            renderPokémonListviewCard(pokémonName, pokémonImage, pokémonTypes);
+            let pokémonId = allLoadedPokémonsObj[pokémonName].id;
+            renderPokémonListviewCard(pokémonName, pokémonImage, pokémonTypes, pokémonId);
             searchResultsCount++;
         }
     }
@@ -191,7 +191,18 @@ async function openOverlay(pokémonName) {
         collectPokémonAttributesForOverlay(overlayAttributesData, evolutionChainData);
     }
     pokémonOverlayWrapperRef.innerHTML = getHTMLDialogOverlay(pokémonName);
+    openActiveTab();
 };
+
+function openActiveTab() {
+    if (activeTab === 'main') {
+        openMainTab();
+    } else if (activeTab === 'stats') {
+        openStatsTab();
+    } else if (activeTab === 'evo') {
+        openEvoTab();
+    }
+}
 
 function showLoadingOverlay() {
     let loadContainerRef = document.getElementById('load_container_overlay');
@@ -337,33 +348,56 @@ function storeEvolutionChainInObj(overlayAttributesData, evoNamesArr, evoImgUrls
 }
 
 function openMainTab() {
+    activeTab = 'main';
     let mainTabContentRef = document.getElementById('main_tab_content');
     let statsTabContentRef = document.getElementById('stats_tab_content');
     let evoTabContentRef = document.getElementById('evo_tab_content');
+    let mainTabBtnRef = document.getElementById('main_tab_btn');
+    let statsTabBtnRef = document.getElementById('stats_tab_btn');
+    let evoTabBtnRef = document.getElementById('evo_tab_btn');
 
     mainTabContentRef.classList.remove('d_none');
     statsTabContentRef.classList.add('d_none');
     evoTabContentRef.classList.add('d_none');
+    mainTabBtnRef.classList.add('clicked_tab');
+    statsTabBtnRef.classList.remove('clicked_tab');
+    evoTabBtnRef.classList.remove('clicked_tab');
 };
 
 function openStatsTab() {
+    activeTab = 'stats';
     let mainTabContentRef = document.getElementById('main_tab_content');
     let statsTabContentRef = document.getElementById('stats_tab_content');
     let evoTabContentRef = document.getElementById('evo_tab_content');
+    let mainTabBtnRef = document.getElementById('main_tab_btn');
+    let statsTabBtnRef = document.getElementById('stats_tab_btn');
+    let evoTabBtnRef = document.getElementById('evo_tab_btn');
+
 
     mainTabContentRef.classList.add('d_none');
     statsTabContentRef.classList.remove('d_none');
     evoTabContentRef.classList.add('d_none');
+    mainTabBtnRef.classList.remove('clicked_tab');
+    statsTabBtnRef.classList.add('clicked_tab');
+    evoTabBtnRef.classList.remove('clicked_tab');
 };
 
 function openEvoTab() {
+    activeTab = 'evo';
     let mainTabContentRef = document.getElementById('main_tab_content');
     let statsTabContentRef = document.getElementById('stats_tab_content');
     let evoTabContentRef = document.getElementById('evo_tab_content');
+    let mainTabBtnRef = document.getElementById('main_tab_btn');
+    let statsTabBtnRef = document.getElementById('stats_tab_btn');
+    let evoTabBtnRef = document.getElementById('evo_tab_btn');
+
 
     mainTabContentRef.classList.add('d_none');
     statsTabContentRef.classList.add('d_none');
     evoTabContentRef.classList.remove('d_none');
+    mainTabBtnRef.classList.remove('clicked_tab');
+    statsTabBtnRef.classList.remove('clicked_tab');
+    evoTabBtnRef.classList.add('clicked_tab');
 };
 
 function preventClose(event) {
