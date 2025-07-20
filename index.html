@@ -4,20 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pokedex</title>
+  <title>Pokédex</title>
 
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="/styles/standard.css" />
   <link rel="stylesheet" href="/styles/assets.css" />
   <link rel="stylesheet" href="/styles/color.css" />
   <link rel="stylesheet" href="/styles/overlay.css" />
+  <link rel="stylesheet" href="/styles/fonts.css" />
+  <link rel="stylesheet" href="/styles/listview_card.css" />
+  <link rel="stylesheet" href="/styles/loadingprocess.css" />
+  <link rel="stylesheet" href="/styles/search.css" />
+  <link rel="stylesheet" href="/styles/responsive.css" />
 
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
-
-  <script src="./scripts/template.js"></script>
-
-
   <link rel="icon" href="./assets/icons/favicon_pokédex.png" type="image/x-icon" />
 </head>
 
@@ -52,7 +52,8 @@
 
       <section class="pokémon_list" id="pokémon_list">
       </section>
-      <button onclick="loadNextPokémonBatch()" class="load_more_btn d_none" id="load_more_btn">Load More Pokémon</button>
+      <button onclick="loadNextPokémonBatch()" class="load_more_btn d_none" id="load_more_btn">Load More
+        Pokémon</button>
 
       <div class="load_container d_none" id="load_container_listview_cards">
 
@@ -79,6 +80,11 @@
   </div>
 
   <script src="script.js"></script>
+  <script src="./scripts/loadingprocess.js"></script>
+  <script src="./scripts/fetch.js"></script>
+  <script src="./scripts/template.js"></script>
+  <script src="./scripts/overlay.js"></script>
+  <script src="./scripts/search.js"></script>
 
 </body>
 
