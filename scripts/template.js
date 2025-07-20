@@ -12,8 +12,6 @@ function getHTMLListviewCard(pokémonName, pokémonImage, pokémonTypes, pokémo
         `;
 }
 
-
-
 function getHTMLDialogOverlay(pokémonName) {
 
   return `
@@ -101,6 +99,5 @@ function getHTMLDialogOverlay(pokémonName) {
     
     </div> 
     `
-
 }
 

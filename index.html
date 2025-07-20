@@ -64,19 +64,20 @@
             id="total_loading_count">20</span>
           Pokémons loaded...</p>
       </div>
-
-      <div class="load_container_overlay d_none" id="load_container_overlay">
-        <div class="pokéball shake">
-          <div class="button-blink"></div>
-        </div>
-      </div>
-
-
     </div>
 
   </main>
   <div onclick="closeOverlay()" id="overlay" class="overlay d_none">
+    <div onclick="preventClose(event)" class="load_container_overlay d_none" id="load_container_overlay">
+      <div class="dark_cover"></div>
+      <div class="pokéball shake">
+        <div class="button-blink"></div>
+      </div>
+    </div>
+
+
     <div class="pokémon_overlay_wrapper" id="pokémon_overlay_wrapper"></div>
+
   </div>
 
 
