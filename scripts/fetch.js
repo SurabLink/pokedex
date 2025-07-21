@@ -8,7 +8,7 @@ async function fetchPokémonNameandDetailUrl() {
         response = await fetch(url);
         dataNameAndDetailUrl = await response.json();
     } catch (error) {
-        console.error('Fehler beim Laden der Pokémon-Liste:', error);
+        console.error('Error loading Pokémon list:', error);
     }
 
     return dataNameAndDetailUrl;
@@ -22,7 +22,7 @@ async function fetchPokémonDetails(detailUrl) {
         response = await fetch(detailUrl);
         dataDetails = await response.json();
     } catch (error) {
-        console.error('Fehler beim Laden der Pokémon-Details:', error);
+        console.error('Error loading Pokémon details:', error);
     }
 
     return dataDetails;
@@ -37,7 +37,7 @@ async function fetchOverlayAttributesData(pokémonName) {
         response = await fetch(attributesUrl);
         overlayAttributesData = await response.json();
     } catch (error) {
-        console.error('Fehler beim Laden der Pokémon-Details:', error);
+        console.error('Error loading Pokémon details:', error);
     }
     return overlayAttributesData;
 }
@@ -52,7 +52,7 @@ async function fetchEvolutionChainData(overlayAttributesData) {
         evolutionChainData = await fetchIfEvolutionChainExists(speciesData, response, evolutionChainData);
 
     } catch (error) {
-        console.error('Fehler beim Laden der Evolutionskette:', error);
+        console.error('Error loading the evolution chain:', error);
     }
     return evolutionChainData;
 }
