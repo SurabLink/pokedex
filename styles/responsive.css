@@ -1,123 +1,216 @@
-@media(min-width: 1000px) {
-    .basket_container {
-        display: flex !important;
-    }
+@media(max-width: 750px) {
 
-    .open_basket_btn {
-        display: none !important;
-    }
-}
-
-@media (max-width: 1200px) {
-
-    ul {
-        gap: 16px !important;
-    }
-}
-
-@media (max-width: 1000px) {
-
-    main > aside.basket_container {
-        display: none;
-        width: auto;
-        min-height: 100vh;
-    }
-
-    .not_selected p {
-        text-align: center;
-    }
-
-    .close_basket_btn {
-        display: flex;
-        justify-content: right;
-        filter: brightness(0) invert(1);
-        margin-bottom: 16px;
-    }
-
-    .open_basket_btn {
-        display: flex;
-        justify-content: center;
-    }
-
-    .main_content {
-        width: 100%;
-    }
-
-    .container_content {
-        max-width: 1440px;
-    }
-}
-
-@media (max-width: 900px) {
-
-    h1 {
-        margin-top: 100px;
-    }
-}
-
-@media (max-width: 850px) {
-
-    .ul_div {
-        overflow-x: auto;
-        scrollbar-width: thin;
-        scrollbar-color: rgba(226, 103, 105, 0.75) transparent;
-        display: flex;
-        justify-content: center;
+    .header_content {
         flex-direction: column;
     }
 
-    .ul_div::-webkit-scrollbar {
-        width: 6px;
+    .logo {
+        margin-left: 0;
     }
 
-    .ul_div::-webkit-scrollbar {
-        width: 6px;
+    .search_btn {
+        margin-right: 0;
     }
 
-    .ul_div::-webkit-scrollbar-thumb {
-        background-color: rgba(255, 255, 255, 0.3);
-        border-radius: 10px;
+    .overlay_title h2 {
+        font-size: 32px;
     }
 
-    ul {
-        display: inline-flex;
-        min-width: max-content;
+    .overlay_img {
+        height: 200px;
+    }
+
+    .type_container.overlay_marker {
+        font-size: 16px;
+    }
+
+    .overlay_tabs button {
+        font-size: 20px;
+        width: 100px;
+    }
+
+    table {
+        width: 300px;
+        font-size: 16px;
+    }
+
+    .evo_tab_content {
+        width: 300px;
+        max-height: 190px;
+    }
+
+    .evo_tab_content img {
+        width: auto;
+        height: 80px;
+    }
+
+    .evo_tab_content figcaption {
+        font-size: 16px;
+    }
+
+    .overlay_content {
+        width: 520px;
+        height: 550px;
+    }
+
+    .load_container_overlay {
+        width: 520px;
+        height: 550px;
+    }
+
+    .listview_img {
+        height: 175px;
+    }
+
+    .listview_card {
+        width: 250px;
     }
 }
 
-@media(max-width: 700px) {
+@media(max-width: 550px) {
 
-    .container_content {
-        padding: 0 40px;
+    .logo {
+        width: 200px;
     }
 
-    h1 {
-        margin-left: 16px;
+    .search_input {
+        min-width: 200px;
     }
 
-    .star_rating {
-        margin-left: 16px;
-    }
-
-    .category_container h2 {
-        margin-left: 16px;
-    }
-}
-
-@media(max-width: 500px) {
-
-    .container_content {
-        padding: 0 10px;
-    }
-}
-
-@media(max-width: 400px) {
-
-    header img {
+    .arrow {
+        width: 40px;
         height: 40px;
     }
 
-    ul {
-        gap: 0 !important;
+    .arrow_right {
+        right: 4%;
+        top: 40%;
+    }
+
+    .arrow_left {
+        left: 4%;
+        top: 40%;
+    }
+
+    .overlay_content {
+        width: 280px;
+    }
+
+    .overlay_title h2 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .dialog {
+        border-radius: 16px;
+    }
+
+    .type_container.overlay_marker {
+        display: flex;
+        gap: 8px;
+    }
+
+    .overlay_img {
+        height: 180px;
+    }
+
+    .overlay_tabs button {
+        width: 85px;
+        font-size: 16px;
+    }
+
+    table {
+        width: 255px;
+    }
+
+    th {
+        width: 115px;
+    }
+
+    .evo_tab_content {
+        width: 255px;
+    }
+
+    .evo_tab_content img {
+        height: 60px;
+    }
+
+    .load_container_overlay {
+        width: 280px;
+        border-radius: 16px;
+    }
+
+    .not_found_subtext {
+        font-size: 16px;
+    }
+}
+
+@media(max-height: 720px) {
+
+
+    .header_content {
+        flex-direction: column;
+    }
+
+    .logo {
+        margin-left: 0;
+    }
+
+    .search_btn {
+        margin-right: 0;
+    }
+
+    .overlay_title h2 {
+        font-size: 32px;
+    }
+
+    .overlay_img {
+        height: 200px;
+    }
+
+    .type_container.overlay_marker {
+        font-size: 16px;
+    }
+
+    .overlay_tabs button {
+        font-size: 20px;
+        width: 100px;
+    }
+
+    table {
+        width: 300px;
+        font-size: 16px;
+    }
+
+    .evo_tab_content {
+        width: 300px;
+        max-height: 190px;
+    }
+
+    .evo_tab_content img {
+        width: auto;
+        height: 80px;
+    }
+
+    .evo_tab_content figcaption {
+        font-size: 16px;
+    }
+
+    .overlay_content {
+        width: 520px;
+        height: 550px;
+    }
+
+    .load_container_overlay {
+        width: 520px;
+        height: 550px;
+    }
+
+    .listview_img {
+        height: 175px;
+    }
+
+    .listview_card {
+        width: 250px;
     }
 }

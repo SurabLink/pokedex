@@ -13,13 +13,17 @@
   text-align: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   width: 300px;
-  display: inline-block;
   transition: transform 0.2s;
 }
 
 .listview_card:hover {
   transform: scale(1.05);
   cursor: pointer;
+}
+
+.card_title {
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .listview_img {
