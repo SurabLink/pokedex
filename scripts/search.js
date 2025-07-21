@@ -37,7 +37,6 @@ function ifSearchInputIncludesThenRenderCard(searchInput, pokémonName, searchRe
     return searchResultsCount
 }
 
-
 function resetSearch(searchInput, searching = false) {
     let notFoundContainerRef = document.getElementById('not_found_container');
     if (searchInput.length == 0) {

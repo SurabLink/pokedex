@@ -37,7 +37,6 @@ async function processPokémonEach(dataNameAndDetailUrl) {
     }
     setTimeout(() => { hideLoadingListviewCards() }, 500);
 }
-// 
 
 function collectPokémonAttributes(dataNameAndDetailUrl, dataDetails, resultsIndex) {
     let pokémonName = dataNameAndDetailUrl.results[resultsIndex].name;

@@ -79,8 +79,6 @@
 }
 
 
-
-
 .normal.transparent {
     background-color: rgba(168, 167, 126, 0.925);
 }
@@ -162,12 +160,6 @@
 }
 
 
-
-
-
-
-
-
 .normal_label {
     background-color: rgb(190, 190, 143);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -176,43 +168,36 @@
 .fighting_label {
     background-color: rgba(253, 73, 67, 0.8);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-
 }
 
 .flying_label {
     background-color: rgba(185, 161, 252, 0.9);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-
 }
 
 .poison_label {
     background-color: rgba(197, 79, 195, 0.8);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-
 }
 
 .ground_label {
     background-color: rgba(252, 216, 125, 0.9);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-
 }
 
 .rock_label {
     background-color: rgba(209, 185, 65, 0.75);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-
 }
 
 .bug_label {
     background-color: rgb(196, 218, 32);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-
 }
 
 .ghost_label {
     background-color: rgb(152, 118, 197);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-
 }
 
 .steel_label {
