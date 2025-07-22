@@ -50,9 +50,12 @@ function resetSearch(searchInput, searching = false) {
 function replaceLoadMoreWithBackBtn() {
     let loadMoreBtnRef = document.getElementById('load_more_btn');
     let backBtnRef = document.getElementById('back_to_overview_btn');
+    let searchInput = document.getElementById('search_input').value.toLowerCase().trim().replace(/\s+/g, '');
 
-    loadMoreBtnRef.classList.add('d_none');
-    backBtnRef.classList.remove('d_none');
+    if (searchInput.length > 2) {
+        loadMoreBtnRef.classList.add('d_none');
+        backBtnRef.classList.remove('d_none');
+    }
 }
 
 function replaceBackWithLoadMoreBtn() {
@@ -65,9 +68,9 @@ function replaceBackWithLoadMoreBtn() {
 
 function backToOverview() {
     let searchInputRef = document.getElementById('search_input');
-    let clearSearchInput = searchInputRef.value = '';
+    let clearedSearchInput = searchInputRef.value = '';
 
-    resetSearch(clearSearchInput);
+    resetSearch(clearedSearchInput);
     replaceBackWithLoadMoreBtn();
 }
 
