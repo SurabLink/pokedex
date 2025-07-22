@@ -1,6 +1,6 @@
 
 async function fetchPokémonNameandDetailUrl() {
-    let url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
+    const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
     let response = null;
     let dataNameAndDetailUrl = null;
 
@@ -29,7 +29,7 @@ async function fetchPokémonDetails(detailUrl) {
 }
 
 async function fetchOverlayAttributesData(pokémonName) {
-    let attributesUrl = `https://pokeapi.co/api/v2/pokemon/${pokémonName}`;
+    const attributesUrl = `https://pokeapi.co/api/v2/pokemon/${pokémonName}`;
     let response = null;
     let overlayAttributesData = null;
 
@@ -43,12 +43,12 @@ async function fetchOverlayAttributesData(pokémonName) {
 }
 
 async function fetchEvolutionChainData(overlayAttributesData) {
-    let speciesUrl = overlayAttributesData.species.url;
+    const speciesUrl = overlayAttributesData.species.url;
     let evolutionChainData = null;
 
     try {
         let response = await fetch(speciesUrl);
-        let speciesData = await response.json();
+        const speciesData = await response.json();
         evolutionChainData = await fetchIfEvolutionChainExists(speciesData, response, evolutionChainData);
 
     } catch (error) {

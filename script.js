@@ -10,14 +10,14 @@ function init() {
 async function loadNextPokémonBatch() {
     disableScroll();
     showLoadingListviewCards();
-    let dataNameAndDetailUrl = await fetchPokémonNameandDetailUrl();
+    const dataNameAndDetailUrl = await fetchPokémonNameandDetailUrl();
     await processPokémonBatch(dataNameAndDetailUrl);
     enableScroll();
     offset += limit;
 }
 
 async function processPokémonBatch(dataNameAndDetailUrl) {
-    let pokémonListRef = document.getElementById('pokémon_list');
+    const pokémonListRef = document.getElementById('pokémon_list');
 
     allCurrentlyRenderedPokémonCards = '';
     await processPokémonEach(dataNameAndDetailUrl)
@@ -25,12 +25,12 @@ async function processPokémonBatch(dataNameAndDetailUrl) {
 }
 
 async function processPokémonEach(dataNameAndDetailUrl) {
-    let currentLoadedCountSpanRef = document.getElementById('current_loaded_count');
+    const currentLoadedCountSpanRef = document.getElementById('current_loaded_count');
     let currentLoadedCount = 0;
 
     for (let resultsIndex = 0; resultsIndex < dataNameAndDetailUrl.results.length; resultsIndex++) {
-        let detailUrl = dataNameAndDetailUrl.results[resultsIndex].url;
-        let dataDetails = await fetchPokémonDetails(detailUrl);
+        const detailUrl = dataNameAndDetailUrl.results[resultsIndex].url;
+        const dataDetails = await fetchPokémonDetails(detailUrl);
         collectPokémonAttributes(dataNameAndDetailUrl, dataDetails, resultsIndex);
         currentLoadedCount++;
         currentLoadedCountSpanRef.innerHTML = currentLoadedCount;
@@ -39,10 +39,10 @@ async function processPokémonEach(dataNameAndDetailUrl) {
 }
 
 function collectPokémonAttributes(dataNameAndDetailUrl, dataDetails, resultsIndex) {
-    let pokémonName = dataNameAndDetailUrl.results[resultsIndex].name;
-    let pokémonImage = dataDetails.sprites.other['official-artwork'].front_default;
-    let pokémonTypes = dataDetails.types.map(t => t.type.name);
-    let pokémonId = dataDetails.id;
+    const pokémonName = dataNameAndDetailUrl.results[resultsIndex].name;
+    const pokémonImage = dataDetails.sprites.other['official-artwork'].front_default;
+    const pokémonTypes = dataDetails.types.map(t => t.type.name);
+    const pokémonId = dataDetails.id;
     storePokémonAttributesInObj(pokémonName, pokémonImage, pokémonTypes, pokémonId);
 }
 

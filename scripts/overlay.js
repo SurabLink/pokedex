@@ -1,8 +1,8 @@
 let activeTab = 'main';
 
 async function openOverlay(pokémonName) {
-    let pokémonOverlayWrapperRef = document.getElementById('pokémon_overlay_wrapper');
-    let overlayRef = document.getElementById('overlay');
+    const pokémonOverlayWrapperRef = document.getElementById('pokémon_overlay_wrapper');
+    const overlayRef = document.getElementById('overlay');
     overlayRef.classList.remove('d_none');
     pokémonOverlayWrapperRef.innerHTML = '';
 
@@ -24,16 +24,16 @@ function collectPokémonAttributesForOverlay(overlayAttributesData, evolutionCha
 
 function handleMainTabSwitch() {
     activeTab = 'main';
-    let mainTabContentRef = document.getElementById('main_tab_content');
-    let statsTabContentRef = document.getElementById('stats_tab_content');
-    let evoTabContentRef = document.getElementById('evo_tab_content');
+    const mainTabContentRef = document.getElementById('main_tab_content');
+    const statsTabContentRef = document.getElementById('stats_tab_content');
+    const evoTabContentRef = document.getElementById('evo_tab_content');
     displayMainTab(mainTabContentRef, statsTabContentRef, evoTabContentRef);
 };
 
 function displayMainTab(mainTabContentRef, statsTabContentRef, evoTabContentRef) {
-    let mainTabBtnRef = document.getElementById('main_tab_btn');
-    let statsTabBtnRef = document.getElementById('stats_tab_btn');
-    let evoTabBtnRef = document.getElementById('evo_tab_btn');
+    const mainTabBtnRef = document.getElementById('main_tab_btn');
+    const statsTabBtnRef = document.getElementById('stats_tab_btn');
+    const evoTabBtnRef = document.getElementById('evo_tab_btn');
 
     mainTabContentRef.classList.remove('d_none');
     statsTabContentRef.classList.add('d_none');
@@ -45,16 +45,16 @@ function displayMainTab(mainTabContentRef, statsTabContentRef, evoTabContentRef)
 
 function handleStatsTabSwitch() {
     activeTab = 'stats';
-    let mainTabContentRef = document.getElementById('main_tab_content');
-    let statsTabContentRef = document.getElementById('stats_tab_content');
-    let evoTabContentRef = document.getElementById('evo_tab_content');
+    const mainTabContentRef = document.getElementById('main_tab_content');
+    const statsTabContentRef = document.getElementById('stats_tab_content');
+    const evoTabContentRef = document.getElementById('evo_tab_content');
     displayStatsTab(mainTabContentRef, statsTabContentRef, evoTabContentRef);
 };
 
 function displayStatsTab(mainTabContentRef, statsTabContentRef, evoTabContentRef) {
-    let mainTabBtnRef = document.getElementById('main_tab_btn');
-    let statsTabBtnRef = document.getElementById('stats_tab_btn');
-    let evoTabBtnRef = document.getElementById('evo_tab_btn');
+    const mainTabBtnRef = document.getElementById('main_tab_btn');
+    const statsTabBtnRef = document.getElementById('stats_tab_btn');
+    const evoTabBtnRef = document.getElementById('evo_tab_btn');
 
     mainTabContentRef.classList.add('d_none');
     statsTabContentRef.classList.remove('d_none');
@@ -66,16 +66,16 @@ function displayStatsTab(mainTabContentRef, statsTabContentRef, evoTabContentRef
 
 function handleEvoTabSwitch() {
     activeTab = 'evo';
-    let mainTabContentRef = document.getElementById('main_tab_content');
-    let statsTabContentRef = document.getElementById('stats_tab_content');
-    let evoTabContentRef = document.getElementById('evo_tab_content');
+    const mainTabContentRef = document.getElementById('main_tab_content');
+    const statsTabContentRef = document.getElementById('stats_tab_content');
+    const evoTabContentRef = document.getElementById('evo_tab_content');
     displayEvoTab(mainTabContentRef, statsTabContentRef, evoTabContentRef);
 };
 
 function displayEvoTab(mainTabContentRef, statsTabContentRef, evoTabContentRef) {
-    let mainTabBtnRef = document.getElementById('main_tab_btn');
-    let statsTabBtnRef = document.getElementById('stats_tab_btn');
-    let evoTabBtnRef = document.getElementById('evo_tab_btn');
+    const mainTabBtnRef = document.getElementById('main_tab_btn');
+    const statsTabBtnRef = document.getElementById('stats_tab_btn');
+    const evoTabBtnRef = document.getElementById('evo_tab_btn');
 
     mainTabContentRef.classList.add('d_none');
     statsTabContentRef.classList.add('d_none');
@@ -112,7 +112,7 @@ function slider(direction, pokémonId) {
 }
 
 function closeOverlay() {
-    let overlayRef = document.getElementById('overlay');
+    const overlayRef = document.getElementById('overlay');
     overlayRef.classList.add('d_none');
     enableScroll();
 }
@@ -126,10 +126,10 @@ function enableScroll() {
 }
 
 function storeMainAttributesInObj(overlayAttributesData) {
-    let height = overlayAttributesData.height;
-    let weight = overlayAttributesData.weight;
-    let baseExperience = overlayAttributesData.base_experience;
-    let abilities = overlayAttributesData.abilities.map(a => a.ability.name);
+    const height = overlayAttributesData.height;
+    const weight = overlayAttributesData.weight;
+    const baseExperience = overlayAttributesData.base_experience;
+    const abilities = overlayAttributesData.abilities.map(a => a.ability.name);
 
     Object.assign(allLoadedPokémonsObj[overlayAttributesData.name], {
         main: getMainDataObj(height, weight, baseExperience, abilities)
@@ -146,12 +146,12 @@ function getMainDataObj(height, weight, baseExperience, abilities) {
 };
 
 function storeStatsAttributesInObj(overlayAttributesData) {
-    let hp = overlayAttributesData.stats.find(s => s.stat.name === 'hp').base_stat;
-    let attack = overlayAttributesData.stats.find(s => s.stat.name === 'attack').base_stat;
-    let defense = overlayAttributesData.stats.find(s => s.stat.name === 'defense').base_stat;
-    let specialAttack = overlayAttributesData.stats.find(s => s.stat.name === 'special-attack').base_stat;
-    let specialDefense = overlayAttributesData.stats.find(s => s.stat.name === 'special-defense').base_stat;
-    let speed = overlayAttributesData.stats.find(s => s.stat.name === 'speed').base_stat;
+    const hp = overlayAttributesData.stats.find(s => s.stat.name === 'hp').base_stat;
+    const attack = overlayAttributesData.stats.find(s => s.stat.name === 'attack').base_stat;
+    const defense = overlayAttributesData.stats.find(s => s.stat.name === 'defense').base_stat;
+    const specialAttack = overlayAttributesData.stats.find(s => s.stat.name === 'special-attack').base_stat;
+    const specialDefense = overlayAttributesData.stats.find(s => s.stat.name === 'special-defense').base_stat;
+    const speed = overlayAttributesData.stats.find(s => s.stat.name === 'speed').base_stat;
 
     Object.assign(allLoadedPokémonsObj[overlayAttributesData.name], {
         stats: getStatsDataObj(hp, attack, defense, specialAttack, specialDefense, speed)
@@ -173,7 +173,7 @@ function extractEvolutionChain(overlayAttributesData, evolutionChainData) {
     let evoNamesArr = [];
     let pokémonIdsArr = [];
     let evoImgUrlsArr = [];
-    let currentEvoObj = evolutionChainData && evolutionChainData.chain ? evolutionChainData.chain : null;
+    const currentEvoObj = evolutionChainData && evolutionChainData.chain ? evolutionChainData.chain : null;
     evoNamesArr.push(currentEvoObj.species.name);
     pokémonIdsArr.push(currentEvoObj.species.url ? currentEvoObj.species.url.match(/\/pokemon-species\/(\d+)\//)[1] : null);
 
@@ -200,7 +200,7 @@ function pushEvoNamesandIdsArr(evoNamesArr, pokémonIdsArr, currentEvoObj) {
 function pushEvoImgUrls(pokémonIdsArr, evoImgUrlsArr) {
 
     for (let i = 0; i < pokémonIdsArr.length; i++) {
-        let currentEvoImgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokémonIdsArr[i]}.png`;
+        const currentEvoImgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokémonIdsArr[i]}.png`;
         evoImgUrlsArr.push(currentEvoImgUrl);
     }
 }
