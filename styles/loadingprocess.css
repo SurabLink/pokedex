@@ -82,7 +82,7 @@
   font-weight: bold;
 }
 
-.load_more_btn {
+.load_more_btn, .back_to_overview_btn {
   background-color: #f7d02c;
   color: #333;
   padding: 12px 24px;
@@ -95,7 +95,6 @@
   margin-bottom: 100px;
 }
 
-.load_more_btn:hover {
+.load_more_btn:hover, .back_to_overview_btn:hover {
   background-color: rgba(247, 206, 44, 0.85);
-
 }

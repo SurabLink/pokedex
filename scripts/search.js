@@ -22,7 +22,6 @@ function renderFilteredPokémonList(searchInput) {
     if (searchResultsCount == 0) {
         document.getElementById('not_found_container').classList.remove('d_none');
     }
-
 }
 
 function ifSearchInputIncludesThenRenderCard(searchInput, pokémonName, searchResultsCount) {
@@ -42,7 +41,33 @@ function resetSearch(searchInput, searching = false) {
     if (searchInput.length == 0) {
         notFoundContainerRef.classList.add('d_none');
         renderFilteredPokémonList(searchInput);
+        replaceBackWithLoadMoreBtn();
     } else if (searchInput.length != 0 && searching == true) {
         notFoundContainerRef.classList.add('d_none');
     }
 }
+
+function replaceLoadMoreWithBackBtn() {
+    let loadMoreBtnRef = document.getElementById('load_more_btn');
+    let backBtnRef = document.getElementById('back_to_overview_btn');
+
+    loadMoreBtnRef.classList.add('d_none');
+    backBtnRef.classList.remove('d_none');
+}
+
+function replaceBackWithLoadMoreBtn() {
+    let loadMoreBtnRef = document.getElementById('load_more_btn');
+    let backBtnRef = document.getElementById('back_to_overview_btn');
+
+    loadMoreBtnRef.classList.remove('d_none');
+    backBtnRef.classList.add('d_none');
+}
+
+function backToOverview() {
+    let searchInputRef = document.getElementById('search_input');
+    let clearSearchInput = searchInputRef.value = '';
+
+    resetSearch(clearSearchInput);
+    replaceBackWithLoadMoreBtn();
+}
+

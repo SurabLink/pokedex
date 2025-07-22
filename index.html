@@ -26,12 +26,12 @@
     <div class="header_content container">
       <img class="logo" src="./assets/icons/logo_pokédex.png" alt="Pokédex Logo" />
       <div class="search_container">
-        <form onsubmit="processSearchPokémon(); return false;">
+        <form onsubmit="replaceLoadMoreWithBackBtn(); processSearchPokémon(); return false;">
           <input class="search_input" oninput="resetSearch(this.value)" type="search" id="search_input"
             placeholder="Type at least 3 letters" />
         </form>
 
-        <button onclick="processSearchPokémon()" id="search_btn" class="search_btn"><img
+        <button onclick="processSearchPokémon(); replaceLoadMoreWithBackBtn()" id="search_btn" class="search_btn"><img
             src="./assets/icons/input-search-bg.png" alt="search magnifying glass"></button>
       </div>
     </div>
@@ -53,6 +53,9 @@
       </section>
       <button onclick="loadNextPokémonBatch()" class="load_more_btn d_none" id="load_more_btn">Load More
         Pokémon</button>
+
+      <button onclick="backToOverview()" class="back_to_overview_btn d_none" id="back_to_overview_btn">Back to Overview</button>
+
 
       <div class="load_container d_none" id="load_container_listview_cards">
 
